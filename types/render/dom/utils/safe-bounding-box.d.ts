@@ -1,4 +1,4 @@
-import { AxisBox2D } from "../../../types/geometry"
+import { AxisBox2D } from "../../../types/geometry";
 /**
  * If a bounding box is measured as 0 on either axis we encounter
  * divide by zero errors. We can prevent the actual errors by dividing by
@@ -8,4 +8,4 @@ import { AxisBox2D } from "../../../types/geometry"
  * can't invert scale: 0) but it will correctly animate back out, and it
  * fixes distortion on any children.
  */
-export declare function safeBoundingBox(box: AxisBox2D): AxisBox2D
+export declare function safeBoundingBox(box: AxisBox2D): AxisBox2D;

@@ -1,1 +1,1 @@
-export declare const proxyDefined: boolean
+export declare const proxyDefined: boolean;

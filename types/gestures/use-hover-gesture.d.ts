@@ -1,7 +1,7 @@
-import { TargetAndTransition } from "../types"
-import { EventInfo } from "../events/types"
-import { VisualElement } from "../render/VisualElement"
-import { VariantLabels } from "../motion/types"
+import { TargetAndTransition } from "../types";
+import { EventInfo } from "../events/types";
+import { VisualElement } from "../render/VisualElement";
+import { VariantLabels } from "../motion/types";
 /**
  * @public
  */
@@ -21,7 +21,7 @@ export interface HoverHandlers {
      * <motion.div whileHover={{ scale: 1.2 }} />
      * ```
      */
-    whileHover?: VariantLabels | TargetAndTransition
+    whileHover?: VariantLabels | TargetAndTransition;
     /**
      * Callback function that fires when pointer starts hovering over the component.
      *
@@ -41,7 +41,7 @@ export interface HoverHandlers {
      * <motion.div onHoverStart={() => console.log('Hover starts')} />
      * ```
      */
-    onHoverStart?(event: MouseEvent, info: EventInfo): void
+    onHoverStart?(event: MouseEvent, info: EventInfo): void;
     /**
      * Callback function that fires when pointer stops hovering over the component.
      *
@@ -61,9 +61,6 @@ export interface HoverHandlers {
      * <motion.div onHoverEnd={() => console.log("Hover ends")} />
      * ```
      */
-    onHoverEnd?(event: MouseEvent, info: EventInfo): void
+    onHoverEnd?(event: MouseEvent, info: EventInfo): void;
 }
-export declare function useHoverGesture(
-    { onHoverStart, onHoverEnd, whileHover }: HoverHandlers,
-    visualElement: VisualElement
-): void
+export declare function useHoverGesture({ onHoverStart, onHoverEnd, whileHover }: HoverHandlers, visualElement: VisualElement): void;

@@ -38,7 +38,7 @@ export interface AnimatePresenceProps {
      *
      * @public
      */
-    initial?: boolean
+    initial?: boolean;
     /**
      * When a component is removed, there's no longer a chance to update its props. So if a component's `exit`
      * prop is defined as a dynamic variant and you want to pass a new `custom` prop, you can do so via `AnimatePresence`.
@@ -46,13 +46,13 @@ export interface AnimatePresenceProps {
      *
      * @public
      */
-    custom?: any
+    custom?: any;
     /**
      * Fires when all exiting nodes have completed animating out.
      *
      * @public
      */
-    onExitComplete?: () => void
+    onExitComplete?: () => void;
     /**
      * If set to `true`, `AnimatePresence` will only render one component at a time. The exiting component
      * will finished its exit animation before the entering component is rendered.
@@ -81,12 +81,12 @@ export interface AnimatePresenceProps {
      *
      * @beta
      */
-    exitBeforeEnter?: boolean
+    exitBeforeEnter?: boolean;
     /**
      * Used in Framer to flag that sibling children *shouldn't* re-render as a result of a
      * child being removed.
      *
      * @internal
      */
-    presenceAffectsLayout?: boolean
+    presenceAffectsLayout?: boolean;
 }

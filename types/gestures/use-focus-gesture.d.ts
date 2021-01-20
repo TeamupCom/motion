@@ -1,6 +1,6 @@
-import { TargetAndTransition } from "../types"
-import { VisualElement } from "../render/VisualElement"
-import { MotionProps, VariantLabels } from "../motion/types"
+import { TargetAndTransition } from "../types";
+import { VisualElement } from "../render/VisualElement";
+import { MotionProps, VariantLabels } from "../motion/types";
 /**
  * @public
  */
@@ -14,7 +14,7 @@ export interface FocusHandlers {
      * <motion.input whileFocus={{ scale: 1.2 }} />
      * ```
      */
-    whileFocus?: VariantLabels | TargetAndTransition
+    whileFocus?: VariantLabels | TargetAndTransition;
 }
 /**
  *
@@ -22,7 +22,4 @@ export interface FocusHandlers {
  * @param ref
  * @internal
  */
-export declare function useFocusGesture(
-    { whileFocus }: MotionProps,
-    visualElement: VisualElement
-): void
+export declare function useFocusGesture({ whileFocus }: MotionProps, visualElement: VisualElement): void;

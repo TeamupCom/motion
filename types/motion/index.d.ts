@@ -1,12 +1,12 @@
-import * as React from "react"
-import { MotionProps } from "./types"
-import { UseVisualElement } from "../render/VisualElement/types"
-import { RenderComponent, MotionFeature } from "./features/types"
-export { MotionProps }
+import * as React from "react";
+import { MotionProps } from "./types";
+import { UseVisualElement } from "../render/VisualElement/types";
+import { RenderComponent, MotionFeature } from "./features/types";
+export { MotionProps };
 export interface MotionComponentConfig<E> {
-    defaultFeatures: MotionFeature[]
-    useVisualElement: UseVisualElement<E>
-    useRender: RenderComponent
+    defaultFeatures: MotionFeature[];
+    useVisualElement: UseVisualElement<E>;
+    useRender: RenderComponent;
 }
 /**
  * Create a `motion` component.
@@ -19,9 +19,4 @@ export interface MotionComponentConfig<E> {
  *
  * @internal
  */
-export declare function createMotionComponent<P extends {}, E>(
-    Component: string | React.ComponentType<P>,
-    { defaultFeatures, useVisualElement, useRender }: MotionComponentConfig<E>
-): React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<P & MotionProps> & React.RefAttributes<E>
->
+export declare function createMotionComponent<P extends {}, E>(Component: string | React.ComponentType<P>, { defaultFeatures, useVisualElement, useRender }: MotionComponentConfig<E>): React.ForwardRefExoticComponent<React.PropsWithoutRef<P & MotionProps> & React.RefAttributes<E>>;

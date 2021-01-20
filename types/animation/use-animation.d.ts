@@ -1,4 +1,4 @@
-import { AnimationControls } from "./AnimationControls"
+import { AnimationControls } from "./AnimationControls";
 /**
  * Creates `AnimationControls`, which can be used to manually start, stop
  * and sequence animations on one or more components.
@@ -48,4 +48,4 @@ import { AnimationControls } from "./AnimationControls"
  *
  * @public
  */
-export declare function useAnimation(): AnimationControls
+export declare function useAnimation(): AnimationControls;

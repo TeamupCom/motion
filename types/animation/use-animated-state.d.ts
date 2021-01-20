@@ -3,4 +3,4 @@
  * on any version.
  * @internal
  */
-export declare function useAnimatedState(initialState: any): any[]
+export declare function useAnimatedState(initialState: any): any[];

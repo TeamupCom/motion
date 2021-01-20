@@ -1,2 +1,2 @@
-import { MotionFeature } from "../types"
-export declare const MeasureLayout: MotionFeature
+import { MotionFeature } from "../types";
+export declare const MeasureLayout: MotionFeature;

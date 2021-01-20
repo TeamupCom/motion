@@ -1,5 +1,5 @@
-import { Target, TargetWithKeyframes } from "../../../types"
-import { HTMLVisualElement } from "../HTMLVisualElement"
+import { Target, TargetWithKeyframes } from "../../../types";
+import { HTMLVisualElement } from "../HTMLVisualElement";
 /**
  * Parse Framer's special CSS variable format into a CSS token and a fallback.
  *
@@ -9,20 +9,14 @@ import { HTMLVisualElement } from "../HTMLVisualElement"
  *
  * @param current
  */
-export declare const cssVariableRegex: RegExp
-export declare function parseCSSVariable(
-    current: string
-): undefined[] | string[]
+export declare const cssVariableRegex: RegExp;
+export declare function parseCSSVariable(current: string): undefined[] | string[];
 /**
  * Resolve CSS variables from
  *
  * @internal
  */
-export declare function resolveCSSVariables(
-    visualElement: HTMLVisualElement,
-    { ...target }: TargetWithKeyframes,
-    transitionEnd: Target | undefined
-): {
-    target: TargetWithKeyframes
-    transitionEnd?: Target
-}
+export declare function resolveCSSVariables(visualElement: HTMLVisualElement, { ...target }: TargetWithKeyframes, transitionEnd: Target | undefined): {
+    target: TargetWithKeyframes;
+    transitionEnd?: Target;
+};

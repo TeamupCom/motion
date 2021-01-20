@@ -1,4 +1,4 @@
-import { ResolvedValueTarget } from "../../types"
+import { ResolvedValueTarget } from "../../types";
 /**
  * Check if a value is animatable. Examples:
  *
@@ -8,7 +8,4 @@ import { ResolvedValueTarget } from "../../types"
  *
  * @internal
  */
-export declare const isAnimatable: (
-    key: string,
-    value: ResolvedValueTarget
-) => boolean
+export declare const isAnimatable: (key: string, value: ResolvedValueTarget) => boolean;

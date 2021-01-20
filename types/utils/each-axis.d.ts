@@ -1,1 +1,1 @@
-export declare function eachAxis<T>(handler: (axis: "x" | "y") => T): T[]
+export declare function eachAxis<T>(handler: (axis: "x" | "y") => T): T[];

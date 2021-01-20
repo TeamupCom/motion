@@ -1,7 +1,7 @@
-import { GestureHandlers } from "../../gestures"
-import { MotionFeature } from "./types"
-export declare const gestureProps: Array<keyof GestureHandlers>
+import { GestureHandlers } from "../../gestures";
+import { MotionFeature } from "./types";
+export declare const gestureProps: Array<keyof GestureHandlers>;
 /**
  * @public
  */
-export declare const Gestures: MotionFeature
+export declare const Gestures: MotionFeature;

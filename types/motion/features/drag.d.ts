@@ -1,5 +1,5 @@
-import { MotionFeature } from "./types"
+import { MotionFeature } from "./types";
 /**
  * @public
  */
-export declare const Drag: MotionFeature
+export declare const Drag: MotionFeature;

@@ -1,8 +1,5 @@
-import { AxisBox2D, BoxDelta } from "../../../types/geometry"
-export declare type OnViewportBoxUpdate = (
-    box: AxisBox2D,
-    delta: BoxDelta
-) => void
+import { AxisBox2D, BoxDelta } from "../../../types/geometry";
+export declare type OnViewportBoxUpdate = (box: AxisBox2D, delta: BoxDelta) => void;
 /**
  * @public
  */
@@ -29,7 +26,7 @@ export interface LayoutProps {
      *
      * @public
      */
-    layout?: boolean | "position"
+    layout?: boolean | "position";
     /**
      * Enable shared layout transitions between components for children of `AnimateSharedLayout`.
      *
@@ -53,17 +50,17 @@ export interface LayoutProps {
      *
      * @public
      */
-    layoutId?: string
+    layoutId?: string;
     /**
      * A callback that will fire when a layout animation on this component completes.
      *
      * @public
      */
-    onLayoutAnimationComplete?(): void
+    onLayoutAnimationComplete?(): void;
     /**
      * A callback that fires whenever the viewport-relative bounding box updates.
      *
      * @public
      */
-    onViewportBoxUpdate?(box: AxisBox2D, delta: BoxDelta): void
+    onViewportBoxUpdate?(box: AxisBox2D, delta: BoxDelta): void;
 }

@@ -38,12 +38,36 @@ const domBaseConfig = {
     useRender,
 }
 
+// TWEAKED PART BELOW - adapted from https://github.com/framer/motion/issues/364#issuecomment-723137822
+
 type CustomMotionComponent = {
     custom: <Props>(
         Component: string | React.ComponentType<Props>
     ) => CustomDomComponent<Props>
 }
 export type Motion = MotionComponents & CustomMotionComponent
+
+// Using the same Proxy polyfill checks as proxy-polyfill
+import { proxyDefined } from "../../has-proxy"
+
+import { htmlElements, svgElements } from "./utils/supported-elements"
+
+const createNonProxyMotion = () => {
+    let motionProxy = {
+        custom: (component: any) => {
+            createDomMotionComponent(component)
+        },
+    }
+    motionProxy = htmlElements.reduce((acc, key) => {
+        acc[key] = createDomMotionComponent(key)
+        return acc
+    }, motionProxy)
+    motionProxy = svgElements.reduce((acc, key) => {
+        acc[key] = createDomMotionComponent(key)
+        return acc
+    }, motionProxy)
+    return motionProxy
+}
 
 /**
  * Convert any React component into a `motion` component. The provided component
@@ -59,7 +83,7 @@ export type Motion = MotionComponents & CustomMotionComponent
  *
  * @public
  */
-export function createMotionProxy(defaultFeatures: MotionFeature[]) {
+function origCreateMotionProxy(defaultFeatures: MotionFeature[]) {
     const config: MotionComponentConfig<HTMLElement | SVGElement> = {
         ...domBaseConfig,
         defaultFeatures,
@@ -85,13 +109,19 @@ export function createMotionProxy(defaultFeatures: MotionFeature[]) {
     return new Proxy({ custom }, { get }) as Motion
 }
 
+export const createMotionProxy: typeof origCreateMotionProxy = proxyDefined
+    ? origCreateMotionProxy
+    : ((() => createNonProxyMotion()) as any)
+
 /**
  * HTML & SVG components, optimised for use with gestures and animation. These can be used as
  * drop-in replacements for any HTML & SVG component, all CSS & SVG properties are supported.
  *
  * @public
  */
-export const motion = /*@__PURE__*/ createMotionProxy(allMotionFeatures)
+export const motion = proxyDefined
+    ? /*@__PURE__*/ createMotionProxy(allMotionFeatures)
+    : (createNonProxyMotion() as Motion)
 
 /**
  * Create a DOM `motion` component with the provided string. This is primarily intended

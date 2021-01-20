@@ -1,4 +1,4 @@
-import { ResolvedValues } from "../../VisualElement/types"
+import { ResolvedValues } from "../../VisualElement/types";
 /**
  * Build SVG path properties. Uses the path's measured length to convert
  * our custom pathLength, pathSpacing and pathOffset into stroke-dashoffset
@@ -6,11 +6,4 @@ import { ResolvedValues } from "../../VisualElement/types"
  *
  * This function is mutative to reduce per-frame GC.
  */
-export declare function buildSVGPath(
-    attrs: ResolvedValues,
-    totalLength: number,
-    length: number,
-    spacing?: number,
-    offset?: number,
-    useDashCase?: boolean
-): void
+export declare function buildSVGPath(attrs: ResolvedValues, totalLength: number, length: number, spacing?: number, offset?: number, useDashCase?: boolean): void;

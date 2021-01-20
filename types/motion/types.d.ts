@@ -1,107 +1,87 @@
-import { CSSProperties } from "react"
-import { MotionValue } from "../value"
-import { AnimationControls } from "../animation/AnimationControls"
-import {
-    Variants,
-    Target,
-    Transition,
-    TargetAndTransition,
-    Omit,
-    MakeCustomValueType,
-} from "../types"
-import { GestureHandlers } from "../gestures"
-import { DraggableProps } from "../gestures/drag/types"
-import { LayoutProps } from "./features/layout/types"
-import { ResolvedValues } from "../render/VisualElement/types"
-export declare type MotionStyleProp = string | number | MotionValue
+import { CSSProperties } from "react";
+import { MotionValue } from "../value";
+import { AnimationControls } from "../animation/AnimationControls";
+import { Variants, Target, Transition, TargetAndTransition, Omit, MakeCustomValueType } from "../types";
+import { GestureHandlers } from "../gestures";
+import { DraggableProps } from "../gestures/drag/types";
+import { LayoutProps } from "./features/layout/types";
+import { ResolvedValues } from "../render/VisualElement/types";
+export declare type MotionStyleProp = string | number | MotionValue;
 /**
  * Either a string, or array of strings, that reference variants defined via the `variants` prop.
  * @public
  */
-export declare type VariantLabels = string | string[]
+export declare type VariantLabels = string | string[];
 export interface TransformProperties {
-    x?: string | number
-    y?: string | number
-    z?: string | number
-    translateX?: string | number
-    translateY?: string | number
-    translateZ?: string | number
-    rotate?: string | number
-    rotateX?: string | number
-    rotateY?: string | number
-    rotateZ?: string | number
-    scale?: string | number
-    scaleX?: string | number
-    scaleY?: string | number
-    scaleZ?: string | number
-    skew?: string | number
-    skewX?: string | number
-    skewY?: string | number
-    originX?: string | number
-    originY?: string | number
-    originZ?: string | number
-    perspective?: string | number
-    transformPerspective?: string | number
+    x?: string | number;
+    y?: string | number;
+    z?: string | number;
+    translateX?: string | number;
+    translateY?: string | number;
+    translateZ?: string | number;
+    rotate?: string | number;
+    rotateX?: string | number;
+    rotateY?: string | number;
+    rotateZ?: string | number;
+    scale?: string | number;
+    scaleX?: string | number;
+    scaleY?: string | number;
+    scaleZ?: string | number;
+    skew?: string | number;
+    skewX?: string | number;
+    skewY?: string | number;
+    originX?: string | number;
+    originY?: string | number;
+    originZ?: string | number;
+    perspective?: string | number;
+    transformPerspective?: string | number;
 }
 /**
  * @public
  */
 export interface SVGPathProperties {
-    pathLength?: number
-    pathOffset?: number
-    pathSpacing?: number
+    pathLength?: number;
+    pathOffset?: number;
+    pathSpacing?: number;
 }
 export interface CustomStyles {
     /**
      * Framer Library custom prop types. These are not actually supported in Motion - preferably
      * we'd have a way of external consumers injecting supported styles into this library.
      */
-    size?: string | number
-    radius?: string | number
-    shadow?: string
-    image?: string
+    size?: string | number;
+    radius?: string | number;
+    shadow?: string;
+    image?: string;
 }
-export declare type MakeMotion<T> = MakeCustomValueType<
-    {
-        [K in keyof T]:
-            | T[K]
-            | MotionValue<number>
-            | MotionValue<string>
-            | MotionValue<any>
-    }
->
-export declare type MotionCSS = MakeMotion<
-    Omit<CSSProperties, "rotate" | "scale" | "perspective">
->
+export declare type MakeMotion<T> = MakeCustomValueType<{
+    [K in keyof T]: T[K] | MotionValue<number> | MotionValue<string> | MotionValue<any>;
+}>;
+export declare type MotionCSS = MakeMotion<Omit<CSSProperties, "rotate" | "scale" | "perspective">>;
 /**
  * @public
  */
-export declare type MotionTransform = MakeMotion<TransformProperties>
+export declare type MotionTransform = MakeMotion<TransformProperties>;
 /**
  * @public
  */
-export declare type MotionStyle = MotionCSS &
-    MotionTransform &
-    MakeMotion<SVGPathProperties> &
-    MakeCustomValueType<CustomStyles>
-export declare type OnUpdate = (v: Target) => void
+export declare type MotionStyle = MotionCSS & MotionTransform & MakeMotion<SVGPathProperties> & MakeCustomValueType<CustomStyles>;
+export declare type OnUpdate = (v: Target) => void;
 /**
  * @public
  */
 export interface RelayoutInfo {
     delta: {
-        x: number
-        y: number
-        width: number
-        height: number
-    }
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
 }
 /**
  * @public
  */
-export declare type ResolveLayoutTransition = (
-    info: RelayoutInfo
-) => Transition | boolean
+export declare type ResolveLayoutTransition = (info: RelayoutInfo) => Transition | boolean;
 /**
  * @public
  */
@@ -141,7 +121,7 @@ export interface AnimationProps {
      * <motion.div animate={animation} />
      * ```
      */
-    animate?: AnimationControls | TargetAndTransition | VariantLabels | boolean
+    animate?: AnimationControls | TargetAndTransition | VariantLabels | boolean;
     /**
      * A target to animate to when this component is removed from the tree.
      *
@@ -190,7 +170,7 @@ export interface AnimationProps {
      * }
      * ```
      */
-    exit?: TargetAndTransition | VariantLabels
+    exit?: TargetAndTransition | VariantLabels;
     /**
      * Variants allow you to define animation states and organise them by name. They allow
      * you to control animations throughout a component tree by switching a single `animate` prop.
@@ -236,7 +216,7 @@ export interface AnimationProps {
      * <motion.div variants={variants} animate="active" />
      * ```
      */
-    variants?: Variants
+    variants?: Variants;
     /**
      * Default transition. If no `transition` is defined in `animate`, it will use the transition defined here.
      *
@@ -264,7 +244,7 @@ export interface AnimationProps {
      * <motion.div transition={spring} animate={{ scale: 1.2 }} />
      * ```
      */
-    transition?: Transition
+    transition?: Transition;
 }
 /**
  * @public
@@ -293,7 +273,9 @@ export interface MotionCallbacks {
      * <motion.div animate={{ x: 100, opacity: 0 }} onUpdate={onUpdate} />
      * ```
      */
-    onUpdate?(latest: { [key: string]: string | number }): void
+    onUpdate?(latest: {
+        [key: string]: string | number;
+    }): void;
     /**
      * Callback when animation defined in `animate` begins.
      *
@@ -317,7 +299,7 @@ export interface MotionCallbacks {
      * <motion.div animate={{ x: 100 }} onAnimationStart={onStart} />
      * ```
      */
-    onAnimationStart?(): void
+    onAnimationStart?(): void;
     /**
      * Callback when animation defined in `animate` is complete.
      *
@@ -341,7 +323,7 @@ export interface MotionCallbacks {
      * <motion.div animate={{ x: 100 }} onAnimationComplete={onComplete} />
      * ```
      */
-    onAnimationComplete?(): void
+    onAnimationComplete?(): void;
 }
 /**
  * @public
@@ -382,25 +364,19 @@ export interface MotionAdvancedProps {
      *
      * @public
      */
-    custom?: any
+    custom?: any;
     /**
      * @public
      * Set to `false` to prevent inheriting variant changes from its parent.
      */
-    inherit?: boolean
+    inherit?: boolean;
 }
 /**
  * Props for `motion` components.
  *
  * @public
  */
-export interface MotionProps
-    extends AnimationProps,
-        MotionCallbacks,
-        GestureHandlers,
-        DraggableProps,
-        LayoutProps,
-        MotionAdvancedProps {
+export interface MotionProps extends AnimationProps, MotionCallbacks, GestureHandlers, DraggableProps, LayoutProps, MotionAdvancedProps {
     /**
      * Properties, variant label or array of variant labels to start in.
      *
@@ -438,7 +414,7 @@ export interface MotionProps
      * <motion.div initial={false} animate={{ opacity: 0 }} />
      * ```
      */
-    initial?: boolean | Target | VariantLabels
+    initial?: boolean | Target | VariantLabels;
     /**
      * @library
      *
@@ -460,7 +436,7 @@ export interface MotionProps
      * }
      * ```
      */
-    style?: MotionStyle
+    style?: MotionStyle;
     /**
      * By default, Framer Motion generates a `transform` property with a sensible transform order. `transformTemplate`
      * can be used to create a different order, or to append/preprend the automatically generated `transform` property.
@@ -491,10 +467,7 @@ export interface MotionProps
      *
      * @public
      */
-    transformTemplate?(
-        transform: TransformProperties,
-        generatedTransform: string
-    ): string
+    transformTemplate?(transform: TransformProperties, generatedTransform: string): string;
     /**
      * This allows values to be transformed before being animated or set as styles.
      *
@@ -509,9 +482,6 @@ export interface MotionProps
      *
      * @internal
      */
-    transformValues?<V extends ResolvedValues>(values: V): V
+    transformValues?<V extends ResolvedValues>(values: V): V;
 }
-export declare type TransformTemplate = (
-    transform: TransformProperties,
-    generatedTransform: string
-) => string
+export declare type TransformTemplate = (transform: TransformProperties, generatedTransform: string) => string;

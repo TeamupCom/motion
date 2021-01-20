@@ -1,6 +1,6 @@
-import * as React from "react"
-import { MotionFeature } from "../features/types"
-import { TransformPoint2D } from "../../types/geometry"
+import * as React from "react";
+import { MotionFeature } from "../features/types";
+import { TransformPoint2D } from "../../types/geometry";
 /**
  * @public
  */
@@ -8,28 +8,28 @@ export interface MotionConfigContext {
     /**
      * @internal
      */
-    transformPagePoint: TransformPoint2D
+    transformPagePoint: TransformPoint2D;
     /**
      * An array of features to provide to children.
      *
      * @public
      */
-    features: MotionFeature[]
+    features: MotionFeature[];
     /**
      * Determines whether this is a static context ie the Framer canvas. If so,
      * it'll disable all dynamic functionality.
      *
      * @internal
      */
-    isStatic: boolean
+    isStatic: boolean;
 }
 export interface MotionConfigProps extends Partial<MotionConfigContext> {
-    children?: React.ReactNode
+    children?: React.ReactNode;
 }
 /**
  * @public
  */
-export declare const MotionConfigContext: React.Context<MotionConfigContext>
+export declare const MotionConfigContext: React.Context<MotionConfigContext>;
 /**
  * MotionConfig can be used in combination with the `m` component to cut bundle size
  * and dynamically load only the features you use.
@@ -52,8 +52,4 @@ export declare const MotionConfigContext: React.Context<MotionConfigContext>
  *
  * @public
  */
-export declare function MotionConfig({
-    children,
-    features,
-    ...props
-}: MotionConfigProps): JSX.Element
+export declare function MotionConfig({ children, features, ...props }: MotionConfigProps): JSX.Element;

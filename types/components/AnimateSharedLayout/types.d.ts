@@ -1,21 +1,21 @@
 /// <reference types="react" />
-import { Transition } from "../../types"
-import { AxisBox2D } from "../../types/geometry"
-import { MotionValue } from "../../value"
+import { Transition } from "../../types";
+import { AxisBox2D } from "../../types/geometry";
+import { MotionValue } from "../../value";
 export declare enum Presence {
     Entering = 0,
     Present = 1,
-    Exiting = 2,
+    Exiting = 2
 }
 export declare enum VisibilityAction {
     Hide = 0,
-    Show = 1,
+    Show = 1
 }
 export interface SharedLayoutProps {
     /**
      * @public
      */
-    children: React.ReactNode
+    children: React.ReactNode;
     /**
      * When combined with `AnimatePresence`, `SharedLayoutProps` can customise how to visually switch
      * between `layoutId` components as new ones enter and leave the tree.
@@ -28,13 +28,13 @@ export interface SharedLayoutProps {
      *
      * @public
      */
-    type?: "switch" | "crossfade"
+    type?: "switch" | "crossfade";
 }
 export interface SharedLayoutAnimationConfig {
-    visibilityAction?: VisibilityAction
-    originBox?: AxisBox2D
-    targetBox?: AxisBox2D
-    transition?: Transition
-    crossfadeOpacity?: MotionValue<number>
-    shouldStackAnimate?: boolean
+    visibilityAction?: VisibilityAction;
+    originBox?: AxisBox2D;
+    targetBox?: AxisBox2D;
+    transition?: Transition;
+    crossfadeOpacity?: MotionValue<number>;
+    shouldStackAnimate?: boolean;
 }

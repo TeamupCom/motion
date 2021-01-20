@@ -1,4 +1,4 @@
 /**
  * @public
  */
-export declare const m: import(".").Motion
+export declare const m: import(".").Motion;

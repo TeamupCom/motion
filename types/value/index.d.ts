@@ -1,17 +1,14 @@
-import { SubscriptionManager } from "../utils/subscription-manager"
-export declare type Transformer<T> = (v: T) => T
+import { SubscriptionManager } from "../utils/subscription-manager";
+export declare type Transformer<T> = (v: T) => T;
 /**
  * @public
  */
-export declare type Subscriber<T> = (v: T) => void
+export declare type Subscriber<T> = (v: T) => void;
 /**
  * @public
  */
-export declare type PassiveEffect<T> = (
-    v: T,
-    safeSetter: (v: T) => void
-) => void
-export declare type StartAnimation = (complete: () => void) => () => void
+export declare type PassiveEffect<T> = (v: T, safeSetter: (v: T) => void) => void;
+export declare type StartAnimation = (complete: () => void) => () => void;
 /**
  * `MotionValue` is used to track the state and velocity of motion values.
  *
@@ -23,37 +20,37 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    private current
+    private current;
     /**
      * The previous state of the `MotionValue`.
      *
      * @internal
      */
-    private prev
+    private prev;
     /**
      * Duration, in milliseconds, since last updating frame.
      *
      * @internal
      */
-    private timeDelta
+    private timeDelta;
     /**
      * Timestamp of the last time this `MotionValue` was updated.
      *
      * @internal
      */
-    private lastUpdated
+    private lastUpdated;
     /**
      * Functions to notify when the `MotionValue` updates.
      *
      * @internal
      */
-    updateSubscribers: SubscriptionManager<Subscriber<V>>
+    updateSubscribers: SubscriptionManager<Subscriber<V>>;
     /**
      * Functions to notify when the `MotionValue` updates and `render` is set to `true`.
      *
      * @internal
      */
-    private renderSubscribers
+    private renderSubscribers;
     /**
      * Add a passive effect to this `MotionValue`.
      *
@@ -63,13 +60,13 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    private passiveEffect?
+    private passiveEffect?;
     /**
      * A reference to the currently-controlling Popmotion animation
      *
      * @internal
      */
-    private stopAnimation?
+    private stopAnimation?;
     /**
      * Tracks whether this value can output a velocity. Currently this is only true
      * if the value is numerical, but we might be able to widen the scope here and support
@@ -77,7 +74,7 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    private canTrackVelocity
+    private canTrackVelocity;
     /**
      * @param init - The initiating value
      * @param config - Optional configuration options
@@ -86,7 +83,7 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    constructor(init: V)
+    constructor(init: V);
     /**
      * Adds a function that will be notified when the `MotionValue` is updated.
      *
@@ -165,8 +162,8 @@ export declare class MotionValue<V = any> {
      *
      * @public
      */
-    onChange(subscription: Subscriber<V>): () => void
-    clearListeners(): void
+    onChange(subscription: Subscriber<V>): () => void;
+    clearListeners(): void;
     /**
      * Adds a function that will be notified when the `MotionValue` requests a render.
      *
@@ -175,13 +172,13 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    onRenderRequest(subscription: Subscriber<V>): () => undefined
+    onRenderRequest(subscription: Subscriber<V>): () => undefined;
     /**
      * Attaches a passive effect to the `MotionValue`.
      *
      * @internal
      */
-    attach(passiveEffect: PassiveEffect<V>): void
+    attach(passiveEffect: PassiveEffect<V>): void;
     /**
      * Sets the state of the `MotionValue`.
      *
@@ -197,8 +194,8 @@ export declare class MotionValue<V = any> {
      *
      * @public
      */
-    set(v: V, render?: boolean): void
-    updateAndNotify: (v: V, render?: boolean) => void
+    set(v: V, render?: boolean): void;
+    updateAndNotify: (v: V, render?: boolean) => void;
     /**
      * Returns the latest state of `MotionValue`
      *
@@ -206,11 +203,11 @@ export declare class MotionValue<V = any> {
      *
      * @public
      */
-    get(): V
+    get(): V;
     /**
      * @public
      */
-    getPrevious(): V
+    getPrevious(): V;
     /**
      * Returns the latest velocity of `MotionValue`
      *
@@ -218,7 +215,7 @@ export declare class MotionValue<V = any> {
      *
      * @public
      */
-    getVelocity(): number
+    getVelocity(): number;
     /**
      * Schedule a velocity check for the next frame.
      *
@@ -227,7 +224,7 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    private scheduleVelocityCheck
+    private scheduleVelocityCheck;
     /**
      * Updates `prev` with `current` if the value hasn't been updated this frame.
      * This ensures velocity calculations return `0`.
@@ -237,7 +234,7 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    private velocityCheck
+    private velocityCheck;
     /**
      * Registers a new animation to control this `MotionValue`. Only one
      * animation can drive a `MotionValue` at one time.
@@ -250,20 +247,20 @@ export declare class MotionValue<V = any> {
      *
      * @internal
      */
-    start(animation: StartAnimation): Promise<void>
+    start(animation: StartAnimation): Promise<void>;
     /**
      * Stop the currently active animation.
      *
      * @public
      */
-    stop(): void
+    stop(): void;
     /**
      * Returns `true` if this value is currently animating.
      *
      * @public
      */
-    isAnimating(): boolean
-    private clearAnimation
+    isAnimating(): boolean;
+    private clearAnimation;
     /**
      * Destroy and clean up subscribers to this `MotionValue`.
      *
@@ -273,9 +270,9 @@ export declare class MotionValue<V = any> {
      *
      * @public
      */
-    destroy(): void
+    destroy(): void;
 }
 /**
  * @internal
  */
-export declare function motionValue<V>(init: V): MotionValue<V>
+export declare function motionValue<V>(init: V): MotionValue<V>;

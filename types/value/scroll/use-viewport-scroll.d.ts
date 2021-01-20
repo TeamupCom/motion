@@ -1,4 +1,4 @@
-import { ScrollMotionValues } from "./utils"
+import { ScrollMotionValues } from "./utils";
 /**
  * Returns MotionValues that update when the viewport scrolls:
  *
@@ -34,4 +34,4 @@ import { ScrollMotionValues } from "./utils"
  *
  * @public
  */
-export declare function useViewportScroll(): ScrollMotionValues
+export declare function useViewportScroll(): ScrollMotionValues;

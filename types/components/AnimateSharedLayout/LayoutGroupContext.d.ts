@@ -2,4 +2,4 @@
 /**
  * @internal
  */
-export declare const LayoutGroupContext: import("react").Context<string | null>
+export declare const LayoutGroupContext: import("react").Context<string | null>;

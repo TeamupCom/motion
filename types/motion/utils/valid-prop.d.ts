@@ -6,4 +6,4 @@
  *
  * @public
  */
-export declare function isValidMotionProp(key: string): boolean
+export declare function isValidMotionProp(key: string): boolean;

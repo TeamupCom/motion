@@ -1,4 +1,4 @@
-import { Easing } from "popmotion"
+import { Easing } from "popmotion";
 /**
  * @public
  */
@@ -8,7 +8,7 @@ export interface TransformOptions<T> {
      *
      * @public
      */
-    clamp?: boolean
+    clamp?: boolean;
     /**
      * Easing functions to use on the interpolations between each value in the input and output ranges.
      *
@@ -16,11 +16,11 @@ export interface TransformOptions<T> {
      *
      * @public
      */
-    ease?: Easing | Easing[]
+    ease?: Easing | Easing[];
     /**
      * @internal
      */
-    mixer?: (from: T, to: T) => (v: number) => any
+    mixer?: (from: T, to: T) => (v: number) => any;
 }
 /**
  * Transforms numbers into other values by mapping them from an input range to an output range.
@@ -73,12 +73,7 @@ export interface TransformOptions<T> {
  *
  * @public
  */
-export declare function transform<T>(
-    inputValue: number,
-    inputRange: number[],
-    outputRange: T[],
-    options?: TransformOptions<T>
-): T
+export declare function transform<T>(inputValue: number, inputRange: number[], outputRange: T[], options?: TransformOptions<T>): T;
 /**
  * @library
  *
@@ -133,8 +128,4 @@ export declare function transform<T>(
  *
  * @public
  */
-export declare function transform<T>(
-    inputRange: number[],
-    outputRange: T[],
-    options?: TransformOptions<T>
-): (inputValue: number) => T
+export declare function transform<T>(inputRange: number[], outputRange: T[], options?: TransformOptions<T>): (inputValue: number) => T;

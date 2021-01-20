@@ -1,143 +1,9 @@
-import { __extends, __assign, __values, __spread, __rest, __read } from 'tslib';
-import React, { createContext, useContext, useRef, useEffect, useMemo, createElement, useLayoutEffect, forwardRef, Fragment, Component as Component$1, useCallback, useState, cloneElement, Children, isValidElement } from 'react';
+import { __values, __assign, __spread, __rest, __read, __extends } from 'tslib';
 import sync, { getFrameData, cancelSync } from 'framesync';
 import { velocityPerSecond, mix, clamp, distance, progress, pipe, cubicBezier, linear, easeIn, easeInOut, easeOut, circIn, circInOut, circOut, backIn, backInOut, backOut, anticipate, bounceIn, bounceInOut, bounceOut, inertia, animate as animate$1, interpolate, wrap } from 'popmotion';
 import { invariant, warning } from 'hey-listen';
 import { number, color, complex, px, percent, degrees, vw, vh, scale, alpha, progressPercentage, filter } from 'style-value-types';
-
-var Presence;
-(function (Presence) {
-    Presence[Presence["Entering"] = 0] = "Entering";
-    Presence[Presence["Present"] = 1] = "Present";
-    Presence[Presence["Exiting"] = 2] = "Exiting";
-})(Presence || (Presence = {}));
-var VisibilityAction;
-(function (VisibilityAction) {
-    VisibilityAction[VisibilityAction["Hide"] = 0] = "Hide";
-    VisibilityAction[VisibilityAction["Show"] = 1] = "Show";
-})(VisibilityAction || (VisibilityAction = {}));
-
-/**
- * Default handlers for batching VisualElements
- */
-var defaultHandler = {
-    measureLayout: function (child) { return child.measureLayout(); },
-    layoutReady: function (child) { return child.layoutReady(); },
-};
-/**
- * Sort VisualElements by tree depth, so we process the highest elements first.
- */
-var sortByDepth = function (a, b) {
-    return a.depth - b.depth;
-};
-/**
- * Create a batcher to process VisualElements
- */
-function createBatcher() {
-    var queue = new Set();
-    var add = function (child) { return queue.add(child); };
-    var flush = function (_a) {
-        var _b = _a === void 0 ? defaultHandler : _a, measureLayout = _b.measureLayout, layoutReady = _b.layoutReady, parent = _b.parent;
-        var order = Array.from(queue).sort(sortByDepth);
-        var resetAndMeasure = function () {
-            /**
-             * Write: Reset any transforms on children elements so we can read their actual layout
-             */
-            order.forEach(function (child) { return child.resetTransform(); });
-            /**
-             * Read: Measure the actual layout
-             */
-            order.forEach(measureLayout);
-        };
-        parent ? parent.withoutTransform(resetAndMeasure) : resetAndMeasure();
-        /**
-         * Write: Notify the VisualElements they're ready for further write operations.
-         */
-        order.forEach(layoutReady);
-        /**
-         * After all children have started animating, ensure any Entering components are set to Present.
-         * If we add deferred animations (set up all animations and then start them in two loops) this
-         * could be moved to the start loop. But it needs to happen after all the animations configs
-         * are generated in AnimateSharedLayout as this relies on presence data
-         */
-        order.forEach(function (child) {
-            if (child.isPresent)
-                child.presence = Presence.Present;
-        });
-        queue.clear();
-    };
-    return { add: add, flush: flush };
-}
-function isSharedLayout(context) {
-    return !!context.forceUpdate;
-}
-var SharedLayoutContext = createContext(createBatcher());
-/**
- * @internal
- */
-var FramerTreeLayoutContext = createContext(createBatcher());
-
-/**
- * This component is responsible for scheduling the measuring of the motion component
- */
-var Measure = /** @class */ (function (_super) {
-    __extends(Measure, _super);
-    function Measure() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * If this is a child of a SyncContext, register the VisualElement with it on mount.
-     */
-    Measure.prototype.componentDidMount = function () {
-        var _a = this.props, syncLayout = _a.syncLayout, framerSyncLayout = _a.framerSyncLayout, visualElement = _a.visualElement;
-        isSharedLayout(syncLayout) && syncLayout.register(visualElement);
-        isSharedLayout(framerSyncLayout) &&
-            framerSyncLayout.register(visualElement);
-    };
-    /**
-     * If this is a child of a SyncContext, notify it that it needs to re-render. It will then
-     * handle the snapshotting.
-     *
-     * If it is stand-alone component, add it to the batcher.
-     */
-    Measure.prototype.getSnapshotBeforeUpdate = function () {
-        var _a = this.props, syncLayout = _a.syncLayout, visualElement = _a.visualElement;
-        if (isSharedLayout(syncLayout)) {
-            syncLayout.syncUpdate();
-        }
-        else {
-            visualElement.snapshotBoundingBox();
-            syncLayout.add(visualElement);
-        }
-        return null;
-    };
-    Measure.prototype.componentDidUpdate = function () {
-        var _a = this.props, syncLayout = _a.syncLayout, visualElement = _a.visualElement;
-        if (!isSharedLayout(syncLayout))
-            syncLayout.flush();
-        /**
-         * If this axis isn't animating as a result of this render we want to reset the targetBox
-         * to the measured box
-         */
-        visualElement.rebaseTargetBox();
-    };
-    Measure.prototype.render = function () {
-        return null;
-    };
-    return Measure;
-}(React.Component));
-function MeasureContextProvider(props) {
-    var syncLayout = useContext(SharedLayoutContext);
-    var framerSyncLayout = useContext(FramerTreeLayoutContext);
-    return (React.createElement(Measure, __assign({}, props, { syncLayout: syncLayout, framerSyncLayout: framerSyncLayout })));
-}
-var MeasureLayout = {
-    key: "measure-layout",
-    shouldRender: function (props) {
-        return !!props.drag || !!props.layout || !!props.layoutId;
-    },
-    getComponent: function () { return MeasureContextProvider; },
-};
+import React, { useRef, createContext, useContext, useEffect, useMemo, createElement, useLayoutEffect, forwardRef, Fragment, Component as Component$1, useCallback, useState, cloneElement, Children, isValidElement } from 'react';
 
 var isRefObject = function (ref) {
     return typeof ref === "object" && ref.hasOwnProperty("current");
@@ -4686,6 +4552,78 @@ function useFeatures(defaultFeatures, isStatic, visualElement, props) {
     return features;
 }
 
+var Presence;
+(function (Presence) {
+    Presence[Presence["Entering"] = 0] = "Entering";
+    Presence[Presence["Present"] = 1] = "Present";
+    Presence[Presence["Exiting"] = 2] = "Exiting";
+})(Presence || (Presence = {}));
+var VisibilityAction;
+(function (VisibilityAction) {
+    VisibilityAction[VisibilityAction["Hide"] = 0] = "Hide";
+    VisibilityAction[VisibilityAction["Show"] = 1] = "Show";
+})(VisibilityAction || (VisibilityAction = {}));
+
+/**
+ * Default handlers for batching VisualElements
+ */
+var defaultHandler = {
+    measureLayout: function (child) { return child.measureLayout(); },
+    layoutReady: function (child) { return child.layoutReady(); },
+};
+/**
+ * Sort VisualElements by tree depth, so we process the highest elements first.
+ */
+var sortByDepth = function (a, b) {
+    return a.depth - b.depth;
+};
+/**
+ * Create a batcher to process VisualElements
+ */
+function createBatcher() {
+    var queue = new Set();
+    var add = function (child) { return queue.add(child); };
+    var flush = function (_a) {
+        var _b = _a === void 0 ? defaultHandler : _a, measureLayout = _b.measureLayout, layoutReady = _b.layoutReady, parent = _b.parent;
+        var order = Array.from(queue).sort(sortByDepth);
+        var resetAndMeasure = function () {
+            /**
+             * Write: Reset any transforms on children elements so we can read their actual layout
+             */
+            order.forEach(function (child) { return child.resetTransform(); });
+            /**
+             * Read: Measure the actual layout
+             */
+            order.forEach(measureLayout);
+        };
+        parent ? parent.withoutTransform(resetAndMeasure) : resetAndMeasure();
+        /**
+         * Write: Notify the VisualElements they're ready for further write operations.
+         */
+        order.forEach(layoutReady);
+        /**
+         * After all children have started animating, ensure any Entering components are set to Present.
+         * If we add deferred animations (set up all animations and then start them in two loops) this
+         * could be moved to the start loop. But it needs to happen after all the animations configs
+         * are generated in AnimateSharedLayout as this relies on presence data
+         */
+        order.forEach(function (child) {
+            if (child.isPresent)
+                child.presence = Presence.Present;
+        });
+        queue.clear();
+    };
+    return { add: add, flush: flush };
+}
+function isSharedLayout(context) {
+    return !!context.forceUpdate;
+}
+var SharedLayoutContext = createContext(createBatcher());
+/**
+ * @internal
+ */
+var FramerTreeLayoutContext = createContext(createBatcher());
+
 var isBrowser$1 = typeof window !== "undefined";
 var useIsomorphicLayoutEffect = isBrowser$1 ? useLayoutEffect : useEffect;
 
@@ -5899,6 +5837,76 @@ var AnimateLayout = {
     getComponent: function () { return AnimateLayoutContextProvider; },
 };
 
+/**
+ * This component is responsible for scheduling the measuring of the motion component
+ */
+var Measure = /** @class */ (function (_super) {
+    __extends(Measure, _super);
+    function Measure() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * If this is a child of a SyncContext, register the VisualElement with it on mount.
+     */
+    Measure.prototype.componentDidMount = function () {
+        var _a = this.props, syncLayout = _a.syncLayout, framerSyncLayout = _a.framerSyncLayout, visualElement = _a.visualElement;
+        isSharedLayout(syncLayout) && syncLayout.register(visualElement);
+        isSharedLayout(framerSyncLayout) &&
+            framerSyncLayout.register(visualElement);
+    };
+    /**
+     * If this is a child of a SyncContext, notify it that it needs to re-render. It will then
+     * handle the snapshotting.
+     *
+     * If it is stand-alone component, add it to the batcher.
+     */
+    Measure.prototype.getSnapshotBeforeUpdate = function () {
+        var _a = this.props, syncLayout = _a.syncLayout, visualElement = _a.visualElement;
+        if (isSharedLayout(syncLayout)) {
+            syncLayout.syncUpdate();
+        }
+        else {
+            visualElement.snapshotBoundingBox();
+            syncLayout.add(visualElement);
+        }
+        return null;
+    };
+    Measure.prototype.componentDidUpdate = function () {
+        var _a = this.props, syncLayout = _a.syncLayout, visualElement = _a.visualElement;
+        if (!isSharedLayout(syncLayout))
+            syncLayout.flush();
+        /**
+         * If this axis isn't animating as a result of this render we want to reset the targetBox
+         * to the measured box
+         */
+        visualElement.rebaseTargetBox();
+    };
+    Measure.prototype.render = function () {
+        return null;
+    };
+    return Measure;
+}(React.Component));
+function MeasureContextProvider(props) {
+    var syncLayout = useContext(SharedLayoutContext);
+    var framerSyncLayout = useContext(FramerTreeLayoutContext);
+    return (React.createElement(Measure, __assign({}, props, { syncLayout: syncLayout, framerSyncLayout: framerSyncLayout })));
+}
+var MeasureLayout = {
+    key: "measure-layout",
+    shouldRender: function (props) {
+        return !!props.drag || !!props.layout || !!props.layoutId;
+    },
+    getComponent: function () { return MeasureContextProvider; },
+};
+
+var hasProxy = function (scope) { return !!scope.Proxy; };
+var proxyDefined = hasProxy((typeof process !== "undefined" &&
+    {}.toString.call(process) === "[object process]") ||
+    (typeof navigator !== "undefined" &&
+        navigator.product === "ReactNative")
+    ? global
+    : self);
+
 var allMotionFeatures = [
     MeasureLayout,
     Animation,
@@ -5910,6 +5918,22 @@ var allMotionFeatures = [
 var domBaseConfig = {
     useVisualElement: useDomVisualElement,
     useRender: useRender,
+};
+var createNonProxyMotion = function () {
+    var motionProxy = {
+        custom: function (component) {
+            createDomMotionComponent(component);
+        },
+    };
+    motionProxy = htmlElements.reduce(function (acc, key) {
+        acc[key] = createDomMotionComponent(key);
+        return acc;
+    }, motionProxy);
+    motionProxy = svgElements.reduce(function (acc, key) {
+        acc[key] = createDomMotionComponent(key);
+        return acc;
+    }, motionProxy);
+    return motionProxy;
 };
 /**
  * Convert any React component into a `motion` component. The provided component
@@ -5925,7 +5949,7 @@ var domBaseConfig = {
  *
  * @public
  */
-function createMotionProxy(defaultFeatures) {
+function origCreateMotionProxy(defaultFeatures) {
     var config = __assign(__assign({}, domBaseConfig), { defaultFeatures: defaultFeatures });
     function custom(Component) {
         return createMotionComponent(Component, config);
@@ -5941,13 +5965,18 @@ function createMotionProxy(defaultFeatures) {
     }
     return new Proxy({ custom: custom }, { get: get });
 }
+var createMotionProxy = proxyDefined
+    ? origCreateMotionProxy
+    : (function () { return createNonProxyMotion(); });
 /**
  * HTML & SVG components, optimised for use with gestures and animation. These can be used as
  * drop-in replacements for any HTML & SVG component, all CSS & SVG properties are supported.
  *
  * @public
  */
-var motion = /*@__PURE__*/ createMotionProxy(allMotionFeatures);
+var motion = proxyDefined
+    ? /*@__PURE__*/ createMotionProxy(allMotionFeatures)
+    : createNonProxyMotion();
 /**
  * Create a DOM `motion` component with the provided string. This is primarily intended
  * as a full alternative to `motion` for consumers who have to support environments that don't
@@ -6649,14 +6678,6 @@ var AnimateSharedLayout = /** @class */ (function (_super) {
     AnimateSharedLayout.contextType = MotionContext;
     return AnimateSharedLayout;
 }(Component$1));
-
-var hasProxy = function (scope) { return !!scope.Proxy; };
-var proxyDefined = hasProxy((typeof process !== "undefined" &&
-    {}.toString.call(process) === "[object process]") ||
-    (typeof navigator !== "undefined" &&
-        navigator.product === "ReactNative")
-    ? global
-    : self);
 
 /**
  * Creates a `MotionValue` to track the state and velocity of a value.
@@ -7519,27 +7540,4 @@ function useInvertedScale(scale) {
     return { scaleX: scaleX, scaleY: scaleY };
 }
 
-/**
- * Components
- */
-var createNonProxyMotion = function () {
-    var motionProxy = {
-        custom: function (component) {
-            createDomMotionComponent(component);
-        },
-    };
-    motionProxy = htmlElements.reduce(function (acc, key) {
-        acc[key] = createDomMotionComponent(key);
-        return acc;
-    }, motionProxy);
-    motionProxy = svgElements.reduce(function (acc, key) {
-        acc[key] = createDomMotionComponent(key);
-        return acc;
-    }, motionProxy);
-    return motionProxy;
-};
-var motion$1 = proxyDefined
-    ? motion
-    : createNonProxyMotion();
-
-export { AnimateLayout as AnimateLayoutFeature, AnimatePresence, AnimateSharedLayout, AnimationControls, Animation as AnimationFeature, DragControls, Drag as DragFeature, Exit as ExitFeature, FramerTreeLayoutContext, Gestures as GesturesFeature, HTMLVisualElement, LayoutGroupContext, MotionConfig, MotionConfigContext, MotionValue, PresenceContext, SharedLayoutContext, VisibilityAction, addScaleCorrection, animate, animateVisualElement, animationControls, createBatcher, createDomMotionComponent, createMotionComponent, isValidMotionProp, m, motion$1 as motion, motionValue, resolveMotionValue, transform, useAnimation, useCycle, useAnimatedState as useDeprecatedAnimatedState, useInvertedScale as useDeprecatedInvertedScale, useDomEvent, useDragControls, useElementScroll, useExternalRef, useGestures, useIsPresent, useMotionTemplate, useMotionValue, usePanGesture, usePresence, useReducedMotion, useSpring, useTapGesture, useTransform, useVariantContext, useViewportScroll };
+export { AnimateLayout as AnimateLayoutFeature, AnimatePresence, AnimateSharedLayout, AnimationControls, Animation as AnimationFeature, DragControls, Drag as DragFeature, Exit as ExitFeature, FramerTreeLayoutContext, Gestures as GesturesFeature, HTMLVisualElement, LayoutGroupContext, MotionConfig, MotionConfigContext, MotionValue, PresenceContext, SharedLayoutContext, VisibilityAction, addScaleCorrection, animate, animateVisualElement, animationControls, createBatcher, createDomMotionComponent, createMotionComponent, isValidMotionProp, m, motion, motionValue, resolveMotionValue, transform, useAnimation, useCycle, useAnimatedState as useDeprecatedAnimatedState, useInvertedScale as useDeprecatedInvertedScale, useDomEvent, useDragControls, useElementScroll, useExternalRef, useGestures, useIsPresent, useMotionTemplate, useMotionValue, usePanGesture, usePresence, useReducedMotion, useSpring, useTapGesture, useTransform, useVariantContext, useViewportScroll };

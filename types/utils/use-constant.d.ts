@@ -1,4 +1,4 @@
-declare type Init<T> = () => T
+declare type Init<T> = () => T;
 /**
  * Creates a constant value over the lifecycle of a component.
  *
@@ -6,5 +6,5 @@ declare type Init<T> = () => T
  * a guarantee that it won't re-run for performance reasons later on. By using `useConstant`
  * you can ensure that initialisers don't execute twice or more.
  */
-export declare function useConstant<T>(init: Init<T>): T
-export {}
+export declare function useConstant<T>(init: Init<T>): T;
+export {};

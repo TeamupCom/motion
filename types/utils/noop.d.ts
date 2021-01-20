@@ -1,1 +1,1 @@
-export declare function noop<T>(any: T): T
+export declare function noop<T>(any: T): T;

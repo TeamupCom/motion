@@ -1,5 +1,5 @@
-import { VisualElement } from "../render/VisualElement"
-import { AnimationControls } from "./AnimationControls"
+import { VisualElement } from "../render/VisualElement";
+import { AnimationControls } from "./AnimationControls";
 /**
  * `useAnimationGroupSubscription` allows a component to subscribe to an
  * externally-created `AnimationControls`, created by the `useAnimation` hook.
@@ -9,7 +9,4 @@ import { AnimationControls } from "./AnimationControls"
  *
  * @internal
  */
-export declare function useAnimationGroupSubscription(
-    visualElement: VisualElement,
-    animation: AnimationControls
-): void
+export declare function useAnimationGroupSubscription(visualElement: VisualElement, animation: AnimationControls): void;

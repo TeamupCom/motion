@@ -1,57 +1,54 @@
-import { RefObject } from "react"
-import { DraggableProps } from "./types"
-import { AnyPointerEvent, PanInfo } from "../../gestures/PanSession"
-import { TransformPoint2D, AxisBox2D, Point2D } from "../../types/geometry"
-import { HTMLVisualElement } from "../../render/dom/HTMLVisualElement"
-import { MotionProps } from "../../motion"
-export declare const elementDragControls: WeakMap<
-    HTMLVisualElement<HTMLElement>,
-    VisualElementDragControls
->
+import { RefObject } from "react";
+import { DraggableProps } from "./types";
+import { AnyPointerEvent, PanInfo } from "../../gestures/PanSession";
+import { TransformPoint2D, AxisBox2D, Point2D } from "../../types/geometry";
+import { HTMLVisualElement } from "../../render/dom/HTMLVisualElement";
+import { MotionProps } from "../../motion";
+export declare const elementDragControls: WeakMap<HTMLVisualElement<HTMLElement>, VisualElementDragControls>;
 interface DragControlConfig {
-    visualElement: HTMLVisualElement
+    visualElement: HTMLVisualElement;
 }
 export interface DragControlOptions {
-    snapToCursor?: boolean
-    cursorProgress?: Point2D
+    snapToCursor?: boolean;
+    cursorProgress?: Point2D;
 }
 interface DragControlsProps extends DraggableProps {
-    transformPagePoint?: TransformPoint2D
+    transformPagePoint?: TransformPoint2D;
 }
-declare type DragDirection = "x" | "y"
+declare type DragDirection = "x" | "y";
 export declare class VisualElementDragControls {
     /**
      * Track whether we're currently dragging.
      *
      * @internal
      */
-    isDragging: boolean
+    isDragging: boolean;
     /**
      * The current direction of drag, or `null` if both.
      *
      * @internal
      */
-    private currentDirection
+    private currentDirection;
     /**
      * The permitted boundaries of travel, in pixels.
      *
      * @internal
      */
-    private constraints
+    private constraints;
     /**
      * A reference to the host component's latest props.
      *
      * @internal
      */
-    private props
+    private props;
     /**
      * @internal
      */
-    private visualElement
+    private visualElement;
     /**
      * @internal
      */
-    private hasMutatedConstraints
+    private hasMutatedConstraints;
     /**
      * Track the initial position of the cursor relative to the dragging element
      * when dragging starts as a value of 0-1 on each axis. We then use this to calculate
@@ -59,67 +56,49 @@ export declare class VisualElementDragControls {
      *
      * @internal
      */
-    cursorProgress: Point2D
-    private originPoint
-    private openGlobalLock
+    cursorProgress: Point2D;
+    private originPoint;
+    private openGlobalLock;
     /**
      * @internal
      */
-    private panSession
+    private panSession;
     /**
      * A reference to the measured constraints bounding box
      */
-    private constraintsBox?
-    constructor({ visualElement }: DragControlConfig)
+    private constraintsBox?;
+    constructor({ visualElement }: DragControlConfig);
     /**
      * Instantiate a PanSession for the drag gesture
      *
      * @public
      */
-    start(
-        originEvent: AnyPointerEvent,
-        { snapToCursor, cursorProgress }?: DragControlOptions
-    ): void
+    start(originEvent: AnyPointerEvent, { snapToCursor, cursorProgress }?: DragControlOptions): void;
     /**
      * Ensure the component's layout and target bounding boxes are up-to-date.
      */
-    prepareBoundingBox(): void
-    resolveDragConstraints(): void
-    resolveRefConstraints(
-        layoutBox: AxisBox2D,
-        constraints: RefObject<Element>
-    ): {
+    prepareBoundingBox(): void;
+    resolveDragConstraints(): void;
+    resolveRefConstraints(layoutBox: AxisBox2D, constraints: RefObject<Element>): {
         x: {
-            min: number
-            max: number
-        }
+            min: number;
+            max: number;
+        };
         y: {
-            min: number
-            max: number
-        }
-    }
-    cancelDrag(): void
-    stop(event: AnyPointerEvent, info: PanInfo): void
-    snapToCursor(event: AnyPointerEvent): void
+            min: number;
+            max: number;
+        };
+    };
+    cancelDrag(): void;
+    stop(event: AnyPointerEvent, info: PanInfo): void;
+    snapToCursor(event: AnyPointerEvent): void;
     /**
      * Update the specified axis with the latest pointer information.
      */
-    updateAxis(
-        axis: DragDirection,
-        event: AnyPointerEvent,
-        offset?: Point2D
-    ): void
-    updateAxisMotionValue(axis: DragDirection, offset?: Point2D): void
-    updateVisualElementAxis(axis: DragDirection, event: AnyPointerEvent): void
-    updateProps({
-        drag,
-        dragDirectionLock,
-        dragPropagation,
-        dragConstraints,
-        dragElastic,
-        dragMomentum,
-        ...remainingProps
-    }: DragControlsProps & MotionProps): void
+    updateAxis(axis: DragDirection, event: AnyPointerEvent, offset?: Point2D): void;
+    updateAxisMotionValue(axis: DragDirection, offset?: Point2D): void;
+    updateVisualElementAxis(axis: DragDirection, event: AnyPointerEvent): void;
+    updateProps({ drag, dragDirectionLock, dragPropagation, dragConstraints, dragElastic, dragMomentum, ...remainingProps }: DragControlsProps & MotionProps): void;
     /**
      * Drag works differently depending on which props are provided.
      *
@@ -128,15 +107,12 @@ export declare class VisualElementDragControls {
      *      visual bounding box
      * - Otherwise, we apply the delta to the x/y motion values.
      */
-    private getAxisMotionValue
-    private animateDragEnd
-    stopMotion(): void
-    private startAxisValueAnimation
-    scalePoint(): void
-    mount(visualElement: HTMLVisualElement): () => void
+    private getAxisMotionValue;
+    private animateDragEnd;
+    stopMotion(): void;
+    private startAxisValueAnimation;
+    scalePoint(): void;
+    mount(visualElement: HTMLVisualElement): () => void;
 }
-export declare function expectsResolvedDragConstraints({
-    dragConstraints,
-    onMeasureDragConstraints,
-}: MotionProps): boolean
-export {}
+export declare function expectsResolvedDragConstraints({ dragConstraints, onMeasureDragConstraints, }: MotionProps): boolean;
+export {};

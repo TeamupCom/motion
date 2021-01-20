@@ -1,5 +1,5 @@
-import { RefObject } from "react"
-import { ScrollMotionValues } from "./utils"
+import { RefObject } from "react";
+import { ScrollMotionValues } from "./utils";
 /**
  * Returns MotionValues that update when the provided element scrolls:
  *
@@ -49,6 +49,4 @@ import { ScrollMotionValues } from "./utils"
  *
  * @public
  */
-export declare function useElementScroll(
-    ref: RefObject<HTMLElement>
-): ScrollMotionValues
+export declare function useElementScroll(ref: RefObject<HTMLElement>): ScrollMotionValues;

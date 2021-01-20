@@ -5,7 +5,4 @@
  * @param parent - Element to find
  * @param child - Element to test against parent
  */
-export declare const isNodeOrChild: (
-    parent: Element,
-    child?: Element | null | undefined
-) => boolean
+export declare const isNodeOrChild: (parent: Element, child?: Element | null | undefined) => boolean;

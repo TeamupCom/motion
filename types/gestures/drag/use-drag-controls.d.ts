@@ -1,8 +1,5 @@
-import * as React from "react"
-import {
-    VisualElementDragControls,
-    DragControlOptions,
-} from "./VisualElementDragControls"
+import * as React from "react";
+import { VisualElementDragControls, DragControlOptions } from "./VisualElementDragControls";
 /**
  * Can manually trigger a drag gesture on one or more `drag`-enabled `motion` components.
  *
@@ -43,13 +40,13 @@ import {
  * @public
  */
 export declare class DragControls {
-    private componentControls
+    private componentControls;
     /**
      * Subscribe a component's internal `VisualElementDragControls` to the user-facing API.
      *
      * @internal
      */
-    subscribe(controls: VisualElementDragControls): () => void
+    subscribe(controls: VisualElementDragControls): () => void;
     /**
      * Start a drag gesture on every `motion` component that has this set of drag controls
      * passed into it via the `dragControls` prop.
@@ -65,17 +62,8 @@ export declare class DragControls {
      *
      * @public
      */
-    start(
-        event:
-            | React.MouseEvent
-            | React.TouchEvent
-            | React.PointerEvent
-            | MouseEvent
-            | TouchEvent
-            | PointerEvent,
-        options?: DragControlOptions
-    ): void
-    updateConstraints(): void
+    start(event: React.MouseEvent | React.TouchEvent | React.PointerEvent | MouseEvent | TouchEvent | PointerEvent, options?: DragControlOptions): void;
+    updateConstraints(): void;
 }
 /**
  * Usually, dragging is initiated by pressing down on a `motion` component with a `drag` prop
@@ -122,4 +110,4 @@ export declare class DragControls {
  *
  * @public
  */
-export declare function useDragControls(): DragControls
+export declare function useDragControls(): DragControls;

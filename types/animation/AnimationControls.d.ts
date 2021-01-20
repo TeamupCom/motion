@@ -1,10 +1,6 @@
-import { TargetAndTransition, TargetResolver, Transition } from "../types"
-import { VisualElement } from "../render/VisualElement"
-declare type ControlsAnimationDefinition =
-    | string
-    | string[]
-    | TargetAndTransition
-    | TargetResolver
+import { TargetAndTransition, TargetResolver, Transition } from "../types";
+import { VisualElement } from "../render/VisualElement";
+declare type ControlsAnimationDefinition = string | string[] | TargetAndTransition | TargetResolver;
 /**
  * Control animations on one or more components.
  *
@@ -16,19 +12,19 @@ export declare class AnimationControls {
      *
      * @internal
      */
-    private hasMounted
+    private hasMounted;
     /**
      * Pending animations that are started before a component is mounted.
      *
      * @internal
      */
-    private pendingAnimations
+    private pendingAnimations;
     /**
      * A collection of linked component animation controls.
      *
      * @internal
      */
-    private subscribers
+    private subscribers;
     /**
      * Subscribes a component's animation controls to this.
      *
@@ -37,7 +33,7 @@ export declare class AnimationControls {
      *
      * @internal
      */
-    subscribe(visualElement: VisualElement): () => boolean
+    subscribe(visualElement: VisualElement): () => boolean;
     /**
      * Starts an animation on all linked components.
      *
@@ -57,10 +53,7 @@ export declare class AnimationControls {
      *
      * @public
      */
-    start(
-        definition: ControlsAnimationDefinition,
-        transitionOverride?: Transition
-    ): Promise<any>
+    start(definition: ControlsAnimationDefinition, transitionOverride?: Transition): Promise<any>;
     /**
      * Instantly set to a set of properties or a variant.
      *
@@ -81,7 +74,7 @@ export declare class AnimationControls {
      *
      * @public
      */
-    set(definition: ControlsAnimationDefinition): void
+    set(definition: ControlsAnimationDefinition): void;
     /**
      * Stops animations on all linked components.
      *
@@ -91,22 +84,22 @@ export declare class AnimationControls {
      *
      * @public
      */
-    stop(): void
+    stop(): void;
     /**
      * Initialises the animation controls.
      *
      * @internal
      */
-    mount(): void
+    mount(): void;
     /**
      * Stops all child animations when the host component unmounts.
      *
      * @internal
      */
-    unmount(): void
+    unmount(): void;
 }
 /**
  * @internal
  */
-export declare const animationControls: () => AnimationControls
-export {}
+export declare const animationControls: () => AnimationControls;
+export {};

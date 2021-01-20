@@ -1,9 +1,9 @@
-import { MotionValue } from "./"
+import { MotionValue } from "./";
 interface ScaleMotionValues {
-    scaleX: MotionValue<number>
-    scaleY: MotionValue<number>
+    scaleX: MotionValue<number>;
+    scaleY: MotionValue<number>;
 }
-export declare const invertScale: (scale: number) => number
+export declare const invertScale: (scale: number) => number;
 /**
  * Returns a `MotionValue` each for `scaleX` and `scaleY` that update with the inverse
  * of their respective parent scales.
@@ -34,7 +34,5 @@ export declare const invertScale: (scale: number) => number
  *
  * @deprecated
  */
-export declare function useInvertedScale(
-    scale?: Partial<ScaleMotionValues>
-): ScaleMotionValues
-export {}
+export declare function useInvertedScale(scale?: Partial<ScaleMotionValues>): ScaleMotionValues;
+export {};

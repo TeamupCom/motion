@@ -1,14 +1,11 @@
-import { RefObject } from "react"
-import { PanInfo } from "../PanSession"
-import { Inertia, TargetAndTransition } from "../../types"
-import { BoundingBox2D } from "../../types/geometry"
-import { DragControls } from "./use-drag-controls"
-import { MotionValue } from "../../value"
-import { VariantLabels } from "../../motion/types"
-export declare type DragHandler = (
-    event: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
-) => void
+import { RefObject } from "react";
+import { PanInfo } from "../PanSession";
+import { Inertia, TargetAndTransition } from "../../types";
+import { BoundingBox2D } from "../../types/geometry";
+import { DragControls } from "./use-drag-controls";
+import { MotionValue } from "../../value";
+import { VariantLabels } from "../../motion/types";
+export declare type DragHandler = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void;
 /**
  * @public
  */
@@ -39,10 +36,7 @@ export interface DragHandlers {
      *
      * @public
      */
-    onDragStart?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo
-    ): void
+    onDragStart?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void;
     /**
      * Callback function that fires when dragging ends.
      *
@@ -69,10 +63,7 @@ export interface DragHandlers {
      *
      * @public
      */
-    onDragEnd?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo
-    ): void
+    onDragEnd?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void;
     /**
      * Callback function that fires when the component is dragged.
      *
@@ -99,7 +90,7 @@ export interface DragHandlers {
      *
      * @public
      */
-    onDrag?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void
+    onDrag?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void;
     /**
      * Callback function that fires a drag direction is determined.
      *
@@ -129,7 +120,7 @@ export interface DragHandlers {
      *
      * @public
      */
-    onDirectionLock?(axis: "x" | "y"): void
+    onDirectionLock?(axis: "x" | "y"): void;
     /**
      * Callback function that fires when drag momentum/bounce transition finishes.
      *
@@ -157,12 +148,12 @@ export interface DragHandlers {
      *
      * @public
      */
-    onDragTransitionEnd?(): void
+    onDragTransitionEnd?(): void;
 }
 /**
  * @public
  */
-export declare type InertiaOptions = Partial<Omit<Inertia, "velocity" | "type">>
+export declare type InertiaOptions = Partial<Omit<Inertia, "velocity" | "type">>;
 /**
  * @public
  */
@@ -184,7 +175,7 @@ export interface DraggableProps extends DragHandlers {
      * <motion.div drag="x" />
      * ```
      */
-    drag?: boolean | "x" | "y"
+    drag?: boolean | "x" | "y";
     /**
      * Properties or variant label to animate to while the drag gesture is recognised.
      *
@@ -192,7 +183,7 @@ export interface DraggableProps extends DragHandlers {
      * <motion.div whileDrag={{ scale: 1.2 }} />
      * ```
      */
-    whileDrag?: VariantLabels | TargetAndTransition
+    whileDrag?: VariantLabels | TargetAndTransition;
     /**
      * If `true`, this will lock dragging to the initially-detected direction. Defaults to `false`.
      *
@@ -208,7 +199,7 @@ export interface DraggableProps extends DragHandlers {
      * <motion.div drag dragDirectionLock />
      * ```
      */
-    dragDirectionLock?: boolean
+    dragDirectionLock?: boolean;
     /**
      * Allows drag gesture propagation to child components. Set to `false` by
      * default.
@@ -225,7 +216,7 @@ export interface DraggableProps extends DragHandlers {
      * <motion.div drag="x" dragPropagation />
      * ```
      */
-    dragPropagation?: boolean
+    dragPropagation?: boolean;
     /**
      * Applies constraints on the permitted draggable area.
      *
@@ -278,7 +269,7 @@ export interface DraggableProps extends DragHandlers {
      * }
      * ```
      */
-    dragConstraints?: false | Partial<BoundingBox2D> | RefObject<Element>
+    dragConstraints?: false | Partial<BoundingBox2D> | RefObject<Element>;
     /**
      * The degree of movement allowed outside constraints. 0 = no movement, 1 =
      * full movement. Set to `0.5` by default.
@@ -303,7 +294,7 @@ export interface DraggableProps extends DragHandlers {
      * />
      * ```
      */
-    dragElastic?: boolean | number
+    dragElastic?: boolean | number;
     /**
      * Apply momentum from the pan gesture to the component when dragging
      * finishes. Set to `true` by default.
@@ -328,7 +319,7 @@ export interface DraggableProps extends DragHandlers {
      * />
      * ```
      */
-    dragMomentum?: boolean
+    dragMomentum?: boolean;
     /**
      * Allows you to change dragging inertia parameters.
      * When releasing a draggable Frame, an animation with type `inertia` starts. The animation is based on your dragging velocity. This property allows you to customize it.
@@ -352,7 +343,7 @@ export interface DraggableProps extends DragHandlers {
      * />
      * ```
      */
-    dragTransition?: InertiaOptions
+    dragTransition?: InertiaOptions;
     /**
      * Usually, dragging is initiated by pressing down on a component and moving it. For some
      * use-cases, for instance clicking at an arbitrary point on a video scrubber, we
@@ -396,7 +387,7 @@ export interface DraggableProps extends DragHandlers {
      * )
      * ```
      */
-    dragControls?: DragControls
+    dragControls?: DragControls;
     /**
      * By default, if `drag` is defined on a component then an event listener will be attached
      * to automatically initiate dragging when a user presses down on it.
@@ -445,15 +436,13 @@ export interface DraggableProps extends DragHandlers {
      * )
      * ```
      */
-    dragListener?: boolean
+    dragListener?: boolean;
     /**
      * If `dragConstraints` is set to a React ref, this callback will call with the measured drag constraints.
      *
      * @public
      */
-    onMeasureDragConstraints?: (
-        constraints: BoundingBox2D
-    ) => BoundingBox2D | void
+    onMeasureDragConstraints?: (constraints: BoundingBox2D) => BoundingBox2D | void;
     /**
      * Usually, dragging uses the layout project engine, and applies transforms to the underlying VisualElement.
      * Passing MotionValues as _dragX and _dragY instead applies drag updates to these motion values.
@@ -461,7 +450,7 @@ export interface DraggableProps extends DragHandlers {
      *
      * @public
      */
-    _dragX?: MotionValue<number>
+    _dragX?: MotionValue<number>;
     /**
      * Usually, dragging uses the layout project engine, and applies transforms to the underlying VisualElement.
      * Passing MotionValues as _dragX and _dragY instead applies drag updates to these motion values.
@@ -469,5 +458,5 @@ export interface DraggableProps extends DragHandlers {
      *
      * @public
      */
-    _dragY?: MotionValue<number>
+    _dragY?: MotionValue<number>;
 }

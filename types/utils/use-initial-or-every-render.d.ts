@@ -1,4 +1,4 @@
-declare type Callback = () => void
+declare type Callback = () => void;
 /**
  * Use callback either only on the initial render or on all renders. In concurrent mode
  * the "initial" render might run multiple times
@@ -8,8 +8,5 @@ declare type Callback = () => void
  *
  * @public
  */
-export declare function useInitialOrEveryRender(
-    callback: Callback,
-    isInitialOnly?: boolean
-): void
-export {}
+export declare function useInitialOrEveryRender(callback: Callback, isInitialOnly?: boolean): void;
+export {};

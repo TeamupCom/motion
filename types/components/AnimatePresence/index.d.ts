@@ -1,5 +1,5 @@
-import * as React from "react"
-import { AnimatePresenceProps } from "./types"
+import * as React from "react";
+import { AnimatePresenceProps } from "./types";
 /**
  * `AnimatePresence` enables the animation of components that have been removed from the tree.
  *
@@ -62,4 +62,4 @@ import { AnimatePresenceProps } from "./types"
  *
  * @public
  */
-export declare const AnimatePresence: React.FunctionComponent<AnimatePresenceProps>
+export declare const AnimatePresence: React.FunctionComponent<AnimatePresenceProps>;

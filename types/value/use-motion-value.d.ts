@@ -1,4 +1,4 @@
-import { MotionValue } from "."
+import { MotionValue } from ".";
 /**
  * Creates a `MotionValue` to track the state and velocity of a value.
  *
@@ -28,4 +28,4 @@ import { MotionValue } from "."
  *
  * @public
  */
-export declare function useMotionValue<T>(initial: T): MotionValue<T>
+export declare function useMotionValue<T>(initial: T): MotionValue<T>;

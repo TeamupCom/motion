@@ -1,8 +1,8 @@
-import { MotionValue } from "../value"
-import { TransformOptions } from "../utils/transform"
-export declare type InputRange = number[]
-declare type SingleTransformer<I, O> = (input: I) => O
-declare type MultiTransformer<I, O> = (input: I[]) => O
+import { MotionValue } from "../value";
+import { TransformOptions } from "../utils/transform";
+export declare type InputRange = number[];
+declare type SingleTransformer<I, O> = (input: I) => O;
+declare type MultiTransformer<I, O> = (input: I[]) => O;
 /**
  * Create a `MotionValue` that transforms the output of another `MotionValue` by mapping it from one range of values into another.
  *
@@ -64,12 +64,7 @@ declare type MultiTransformer<I, O> = (input: I[]) => O
  *
  * @public
  */
-export declare function useTransform<I, O>(
-    value: MotionValue<number>,
-    inputRange: InputRange,
-    outputRange: O[],
-    options?: TransformOptions<O>
-): MotionValue<O>
+export declare function useTransform<I, O>(value: MotionValue<number>, inputRange: InputRange, outputRange: O[], options?: TransformOptions<O>): MotionValue<O>;
 /**
  * Create a `MotionValue` that transforms the output of another `MotionValue` through a function.
  * In this example, `y` will always be double `x`.
@@ -105,10 +100,7 @@ export declare function useTransform<I, O>(
  *
  * @public
  */
-export declare function useTransform<I, O>(
-    input: MotionValue<I>,
-    transformer: SingleTransformer<I, O>
-): MotionValue<O>
+export declare function useTransform<I, O>(input: MotionValue<I>, transformer: SingleTransformer<I, O>): MotionValue<O>;
 /**
  * Pass an array of `MotionValue`s and a function to combine them. In this example, `z` will be the `x` multiplied by `y`.
  *
@@ -145,8 +137,5 @@ export declare function useTransform<I, O>(
  *
  * @public
  */
-export declare function useTransform<I, O>(
-    input: MotionValue<string | number>[],
-    transformer: MultiTransformer<I, O>
-): MotionValue<O>
-export {}
+export declare function useTransform<I, O>(input: MotionValue<string | number>[], transformer: MultiTransformer<I, O>): MotionValue<O>;
+export {};

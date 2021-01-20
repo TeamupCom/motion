@@ -1,1 +1,1 @@
-export declare function useUnmountEffect(callback: () => void): void
+export declare function useUnmountEffect(callback: () => void): void;

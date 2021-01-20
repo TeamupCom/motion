@@ -1,5 +1,5 @@
-import { SpringOptions } from "popmotion"
-import { MotionValue } from "../value"
+import { SpringOptions } from "popmotion";
+import { MotionValue } from "../value";
 /**
  * Creates a `MotionValue` that, when `set`, will use a spring animation to animate to its new state.
  *
@@ -19,7 +19,4 @@ import { MotionValue } from "../value"
  *
  * @public
  */
-export declare function useSpring(
-    source: MotionValue | number,
-    config?: SpringOptions
-): MotionValue<any>
+export declare function useSpring(source: MotionValue | number, config?: SpringOptions): MotionValue<any>;

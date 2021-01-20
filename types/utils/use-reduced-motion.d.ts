@@ -24,4 +24,4 @@
  *
  * @public
  */
-export declare function useReducedMotion(): boolean | null
+export declare function useReducedMotion(): boolean | null;

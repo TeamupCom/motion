@@ -1,5 +1,5 @@
-import { MotionValue } from ".."
-import { CustomValueType } from "../../types"
+import { MotionValue } from "..";
+import { CustomValueType } from "../../types";
 /**
  * If the provided value is a MotionValue, this returns the actual value, otherwise just the value itself
  *
@@ -7,6 +7,4 @@ import { CustomValueType } from "../../types"
  *
  * @internal
  */
-export declare function resolveMotionValue(
-    value?: string | number | CustomValueType | MotionValue
-): string | number
+export declare function resolveMotionValue(value?: string | number | CustomValueType | MotionValue): string | number;

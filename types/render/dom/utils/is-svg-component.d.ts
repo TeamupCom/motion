@@ -5,6 +5,4 @@
  * do this would be to offer a `motion.customSVG` function and determine this
  * when we generate the `motion.circle` etc components.
  */
-export declare function isSVGComponent<Props>(
-    Component: string | React.ComponentType<Props>
-): boolean
+export declare function isSVGComponent<Props>(Component: string | React.ComponentType<Props>): boolean;

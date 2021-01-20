@@ -1,8 +1,8 @@
-import { RefObject } from "react"
-import { EventInfo } from "../events/types"
-import { PanInfo } from "./PanSession"
-import { VisualElement } from "../render/VisualElement"
-export declare type PanHandler = (event: Event, info: PanInfo) => void
+import { RefObject } from "react";
+import { EventInfo } from "../events/types";
+import { PanInfo } from "./PanSession";
+import { VisualElement } from "../render/VisualElement";
+export declare type PanHandler = (event: Event, info: PanInfo) => void;
 /**
  * @public
  */
@@ -38,7 +38,7 @@ export interface PanHandlers {
      *   - `offset`: Offset from the original pan event.
      *   - `velocity`: Current velocity of the pointer.
      */
-    onPan?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void
+    onPan?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void;
     /**
      * Callback function that fires when the pan gesture begins on this element.
      *
@@ -70,10 +70,7 @@ export interface PanHandlers {
      *   - `offset`: Offset from the original pan event.
      *   - `velocity`: Current velocity of the pointer.
      */
-    onPanStart?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo
-    ): void
+    onPanStart?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void;
     /**
      * Callback function that fires when we begin detecting a pan gesture. This
      * is analogous to `onMouseStart` or `onTouchStart`.
@@ -103,10 +100,7 @@ export interface PanHandlers {
      *
      *   - `point`: Relative to the device or page.
      */
-    onPanSessionStart?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: EventInfo
-    ): void
+    onPanSessionStart?(event: MouseEvent | TouchEvent | PointerEvent, info: EventInfo): void;
     /**
      * Callback function that fires when the pan gesture ends on this element.
      *
@@ -138,10 +132,7 @@ export interface PanHandlers {
      *   - `offset`: Offset from the original pan event.
      *   - `velocity`: Current velocity of the pointer.
      */
-    onPanEnd?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo
-    ): void
+    onPanEnd?(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void;
 }
 /**
  *
@@ -155,7 +146,4 @@ export interface PanHandlers {
  *
  * @internal
  */
-export declare function usePanGesture(
-    { onPan, onPanStart, onPanEnd, onPanSessionStart }: PanHandlers,
-    ref: RefObject<Element> | VisualElement
-): void
+export declare function usePanGesture({ onPan, onPanStart, onPanEnd, onPanSessionStart }: PanHandlers, ref: RefObject<Element> | VisualElement): void;

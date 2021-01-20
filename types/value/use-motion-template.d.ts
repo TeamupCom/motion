@@ -1,4 +1,4 @@
-import { MotionValue } from "."
+import { MotionValue } from ".";
 /**
  * Combine multiple motion values into a new one using a string template literal.
  *
@@ -21,7 +21,4 @@ import { MotionValue } from "."
  *
  * @public
  */
-export declare function useMotionTemplate(
-    fragments: TemplateStringsArray,
-    ...values: MotionValue[]
-): MotionValue<string>
+export declare function useMotionTemplate(fragments: TemplateStringsArray, ...values: MotionValue[]): MotionValue<string>;

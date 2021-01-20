@@ -1,20 +1,19 @@
-import { Spring, Tween } from "../types"
-import { MotionValue } from "../value"
+import { Spring, Tween } from "../types";
+import { MotionValue } from "../value";
 interface PlaybackControls {
-    stop: () => void
+    stop: () => void;
 }
 interface PlaybackLifecycles<V> {
-    onUpdate?: (latest: V) => void
-    onPlay?: () => void
-    onComplete?: () => void
-    onRepeat?: () => void
-    onStop?: () => void
+    onUpdate?: (latest: V) => void;
+    onPlay?: () => void;
+    onComplete?: () => void;
+    onRepeat?: () => void;
+    onStop?: () => void;
 }
-declare type AnimationOptions<V> = (Tween | Spring) &
-    PlaybackLifecycles<V> & {
-        delay?: number
-        type?: "tween" | "spring"
-    }
+declare type AnimationOptions<V> = (Tween | Spring) & PlaybackLifecycles<V> & {
+    delay?: number;
+    type?: "tween" | "spring";
+};
 /**
  * Animate a single value or a `MotionValue`.
  *
@@ -42,9 +41,5 @@ declare type AnimationOptions<V> = (Tween | Spring) &
  *
  * @public
  */
-export declare function animate<V>(
-    from: MotionValue<V> | V,
-    to: V | V[],
-    transition?: AnimationOptions<V>
-): PlaybackControls
-export {}
+export declare function animate<V>(from: MotionValue<V> | V, to: V | V[], transition?: AnimationOptions<V>): PlaybackControls;
+export {};

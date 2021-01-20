@@ -1,7 +1,7 @@
-import { TargetAndTransition } from "../types"
-import { Point2D } from "../types/geometry"
-import { VisualElement } from "../render/VisualElement"
-import { VariantLabels } from "../motion/types"
+import { TargetAndTransition } from "../types";
+import { Point2D } from "../types/geometry";
+import { VisualElement } from "../render/VisualElement";
+import { VariantLabels } from "../motion/types";
 /**
  * Passed in to tap event handlers like `onTap` the `TapInfo` object contains
  * information about the tap gesture such as it‘s location.
@@ -55,7 +55,7 @@ export interface TapInfo {
      *
      * @public
      */
-    point: Point2D
+    point: Point2D;
 }
 /**
  * @public
@@ -87,7 +87,7 @@ export interface TapHandlers {
      * @param event - The originating pointer event.
      * @param info - An {@link TapInfo} object containing `x` and `y` values for the `point` relative to the device or page.
      */
-    onTap?(event: MouseEvent | TouchEvent | PointerEvent, info: TapInfo): void
+    onTap?(event: MouseEvent | TouchEvent | PointerEvent, info: TapInfo): void;
     /**
      * Callback when the tap gesture starts on this element.
      *
@@ -114,10 +114,7 @@ export interface TapHandlers {
      * @param event - The originating pointer event.
      * @param info - An {@link TapInfo} object containing `x` and `y` values for the `point` relative to the device or page.
      */
-    onTapStart?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: TapInfo
-    ): void
+    onTapStart?(event: MouseEvent | TouchEvent | PointerEvent, info: TapInfo): void;
     /**
      * Callback when the tap gesture ends outside this element.
      *
@@ -144,10 +141,7 @@ export interface TapHandlers {
      * @param event - The originating pointer event.
      * @param info - An {@link TapInfo} object containing `x` and `y` values for the `point` relative to the device or page.
      */
-    onTapCancel?(
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: TapInfo
-    ): void
+    onTapCancel?(event: MouseEvent | TouchEvent | PointerEvent, info: TapInfo): void;
     /**
      * Properties or variant label to animate to while the component is pressed.
      *
@@ -163,13 +157,10 @@ export interface TapHandlers {
      * <motion.div whileTap={{ scale: 0.8 }} />
      * ```
      */
-    whileTap?: VariantLabels | TargetAndTransition
+    whileTap?: VariantLabels | TargetAndTransition;
 }
 /**
  * @param handlers -
  * @internal
  */
-export declare function useTapGesture(
-    { onTap, onTapStart, onTapCancel, whileTap }: TapHandlers,
-    visualElement: VisualElement
-): void
+export declare function useTapGesture({ onTap, onTapStart, onTapCancel, whileTap }: TapHandlers, visualElement: VisualElement): void;

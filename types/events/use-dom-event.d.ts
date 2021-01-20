@@ -1,10 +1,5 @@
-import { RefObject } from "react"
-export declare function addDomEvent(
-    target: EventTarget,
-    eventName: string,
-    handler: EventListener,
-    options?: AddEventListenerOptions
-): () => void
+import { RefObject } from "react";
+export declare function addDomEvent(target: EventTarget, eventName: string, handler: EventListener, options?: AddEventListenerOptions): () => void;
 /**
  * Attaches an event listener directly to the provided DOM element.
  *
@@ -26,9 +21,4 @@ export declare function addDomEvent(
  *
  * @public
  */
-export declare function useDomEvent(
-    ref: RefObject<EventTarget>,
-    eventName: string,
-    handler?: EventListener | undefined,
-    options?: AddEventListenerOptions
-): void
+export declare function useDomEvent(ref: RefObject<EventTarget>, eventName: string, handler?: EventListener | undefined, options?: AddEventListenerOptions): void;

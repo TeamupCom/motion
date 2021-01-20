@@ -1,46 +1,11 @@
 /**
  * Components
  */
+export { motion, createDomMotionComponent } from "./render/dom"
 export { m } from "./render/dom/minimal-component"
 export { AnimatePresence } from "./components/AnimatePresence"
 export { AnimateSharedLayout } from "./components/AnimateSharedLayout"
 export { HTMLVisualElement } from "./render/dom/HTMLVisualElement"
-
-// TWEAKED PART BELOW - adapted from https://github.com/framer/motion/issues/364#issuecomment-723137822
-import {
-    Motion,
-    motion as origMotion,
-    createDomMotionComponent,
-} from "./render/dom"
-
-// Using the same Proxy polyfill checks as proxy-polyfill
-import { proxyDefined } from "./has-proxy"
-
-import {
-    htmlElements,
-    svgElements,
-} from "./render/dom/utils/supported-elements"
-const createNonProxyMotion = () => {
-    let motionProxy = {
-        custom: (component: any) => {
-            createDomMotionComponent(component)
-        },
-    }
-    motionProxy = htmlElements.reduce((acc, key) => {
-        acc[key] = createDomMotionComponent(key)
-        return acc
-    }, motionProxy)
-    motionProxy = svgElements.reduce((acc, key) => {
-        acc[key] = createDomMotionComponent(key)
-        return acc
-    }, motionProxy)
-    return motionProxy
-}
-
-const motion: Motion = proxyDefined
-    ? origMotion
-    : (createNonProxyMotion() as Motion)
-export { motion, createDomMotionComponent }
 
 /**
  * Features

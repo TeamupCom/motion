@@ -1,45 +1,32 @@
-import { CSSProperties, SVGAttributes } from "react"
-import {
-    TransformProperties,
-    CustomStyles,
-    SVGPathProperties,
-} from "./motion/types"
+import { CSSProperties, SVGAttributes } from "react";
+import { TransformProperties, CustomStyles, SVGPathProperties } from "./motion/types";
 /**
  * @public
  */
-export declare type ResolvedKeyframesTarget =
-    | [null, ...number[]]
-    | number[]
-    | [null, ...string[]]
-    | string[]
+export declare type ResolvedKeyframesTarget = [null, ...number[]] | number[] | [null, ...string[]] | string[];
 /**
  * @public
  */
-export declare type KeyframesTarget =
-    | ResolvedKeyframesTarget
-    | [null, ...CustomValueType[]]
-    | CustomValueType[]
+export declare type KeyframesTarget = ResolvedKeyframesTarget | [null, ...CustomValueType[]] | CustomValueType[];
 /**
  * @public
  */
-export declare type ResolvedSingleTarget = string | number
+export declare type ResolvedSingleTarget = string | number;
 /**
  * @public
  */
-export declare type SingleTarget = ResolvedSingleTarget | CustomValueType
+export declare type SingleTarget = ResolvedSingleTarget | CustomValueType;
 /**
  * @public
  */
-export declare type ResolvedValueTarget =
-    | ResolvedSingleTarget
-    | ResolvedKeyframesTarget
+export declare type ResolvedValueTarget = ResolvedSingleTarget | ResolvedKeyframesTarget;
 /**
  * @public
  */
-export declare type ValueTarget = SingleTarget | KeyframesTarget
+export declare type ValueTarget = SingleTarget | KeyframesTarget;
 export declare type Props = {
-    [key: string]: any
-}
+    [key: string]: any;
+};
 /**
  * A function that accepts a progress value between `0` and `1` and returns a
  * new one.
@@ -71,7 +58,7 @@ export declare type Props = {
  *
  * @public
  */
-export declare type EasingFunction = (v: number) => number
+export declare type EasingFunction = (v: number) => number;
 /**
  * The easing function to use. Set as one of:
  *
@@ -81,20 +68,7 @@ export declare type EasingFunction = (v: number) => number
  *
  * @public
  */
-export declare type Easing =
-    | [number, number, number, number]
-    | "linear"
-    | "easeIn"
-    | "easeOut"
-    | "easeInOut"
-    | "circIn"
-    | "circOut"
-    | "circInOut"
-    | "backIn"
-    | "backOut"
-    | "backInOut"
-    | "anticipate"
-    | EasingFunction
+export declare type Easing = [number, number, number, number] | "linear" | "easeIn" | "easeOut" | "easeInOut" | "circIn" | "circOut" | "circInOut" | "backIn" | "backOut" | "backInOut" | "anticipate" | EasingFunction;
 /**
  * Options for orchestrating the timing of animations.
  *
@@ -113,7 +87,7 @@ export interface Orchestration {
      *
      * @public
      */
-    delay?: number
+    delay?: number;
     /**
      * Describes the relationship between the transition and its children. Set
      * to `false` by default.
@@ -176,7 +150,7 @@ export interface Orchestration {
      *
      * @public
      */
-    when?: false | "beforeChildren" | "afterChildren" | string
+    when?: false | "beforeChildren" | "afterChildren" | string;
     /**
      * When using variants, children animations will start after this duration
      * (in seconds). You can add the `transition` property to both the `Frame` and the `variant` directly. Adding it to the `variant` generally offers more flexibility, as it allows you to customize the delay per visual state.
@@ -243,7 +217,7 @@ export interface Orchestration {
      *
      * @public
      */
-    delayChildren?: number
+    delayChildren?: number;
     /**
      * When using variants, animations of child components can be staggered by this
      * duration (in seconds).
@@ -316,7 +290,7 @@ export interface Orchestration {
      *
      * @public
      */
-    staggerChildren?: number
+    staggerChildren?: number;
     /**
      * The direction in which to stagger children.
      *
@@ -387,7 +361,7 @@ export interface Orchestration {
      *
      * @public
      */
-    staggerDirection?: number
+    staggerDirection?: number;
 }
 export interface Repeat {
     /**
@@ -420,7 +394,7 @@ export interface Repeat {
      *
      * @public
      */
-    repeat?: number
+    repeat?: number;
     /**
      * How to repeat the animation. This can be either:
      *
@@ -460,7 +434,7 @@ export interface Repeat {
      *
      * @public
      */
-    repeatType?: "loop" | "reverse" | "mirror"
+    repeatType?: "loop" | "reverse" | "mirror";
     /**
      * When repeating an animation, `repeatDelay` will set the
      * duration of the time to wait, in seconds, between each repetition.
@@ -490,7 +464,7 @@ export interface Repeat {
      *
      * @public
      */
-    repeatDelay?: number
+    repeatDelay?: number;
 }
 /**
  * An animation that animates between two or more values over a specific duration of time.
@@ -524,7 +498,7 @@ export interface Tween extends Repeat {
      *
      * @public
      */
-    type?: "tween"
+    type?: "tween";
     /**
      * The duration of the tween animation. Set to `0.3` by default, 0r `0.8` if animating a series of keyframes.
      *
@@ -550,7 +524,7 @@ export interface Tween extends Repeat {
      *
      * @public
      */
-    duration?: number
+    duration?: number;
     /**
      * The easing function to use. Set as one of the below.
      *
@@ -586,14 +560,14 @@ export interface Tween extends Repeat {
      *
      * @public
      */
-    ease?: Easing | Easing[]
+    ease?: Easing | Easing[];
     /**
      * The duration of time already elapsed in the animation. Set to `0` by
      * default.
      *
      * @internal
      */
-    elapsed?: number
+    elapsed?: number;
     /**
      * When animating keyframes, `times` can be used to determine where in the animation each keyframe is reached.
      * Each value in `times` is a value between `0` and `1`, representing `duration`.
@@ -625,7 +599,7 @@ export interface Tween extends Repeat {
      *
      * @public
      */
-    times?: number[]
+    times?: number[];
     /**
      * When animating keyframes, `easings` can be used to define easing functions between each keyframe. This array should be one item fewer than the number of keyframes, as these easings apply to the transitions between the keyframes.
      *
@@ -653,7 +627,7 @@ export interface Tween extends Repeat {
      *
      * @public
      */
-    easings?: Easing[]
+    easings?: Easing[];
     /**
      * The value to animate from.
      * By default, this is the current state of the animating value.
@@ -683,19 +657,19 @@ export interface Tween extends Repeat {
      *
      * @public
      */
-    from?: number | string
+    from?: number | string;
     /**
      * @internal
      */
-    to?: number | string | ValueTarget
+    to?: number | string | ValueTarget;
     /**
      * @internal
      */
-    velocity?: number
+    velocity?: number;
     /**
      * @internal
      */
-    delay?: number
+    delay?: number;
 }
 /**
  * An animation that simulates spring physics for realistic motion.
@@ -732,7 +706,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    type: "spring"
+    type: "spring";
     /**
      * Stiffness of the spring. Higher values will create more sudden movement.
      * Set to `100` by default.
@@ -762,7 +736,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    stiffness?: number
+    stiffness?: number;
     /**
      * Strength of opposing force. If set to 0, spring will oscillate
      * indefinitely. Set to `10` by default.
@@ -792,7 +766,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    damping?: number
+    damping?: number;
     /**
      * Mass of the moving object. Higher values will result in more lethargic
      * movement. Set to `1` by default.
@@ -822,7 +796,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    mass?: number
+    mass?: number;
     /**
      * The duration of the animation, defined in seconds. Spring animations can be a maximum of 10 seconds.
      *
@@ -855,7 +829,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    duration?: number
+    duration?: number;
     /**
      * `bounce` determines the "bounciness" of a spring animation.
      *
@@ -890,7 +864,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    bounce?: number
+    bounce?: number;
     /**
      * End animation if absolute speed (in units per second) drops below this
      * value and delta is smaller than `restDelta`. Set to `0.01` by default.
@@ -920,7 +894,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    restSpeed?: number
+    restSpeed?: number;
     /**
      * End animation if distance is below this value and speed is below
      * `restSpeed`. When animation ends, spring gets “snapped” to. Set to
@@ -951,7 +925,7 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    restDelta?: number
+    restDelta?: number;
     /**
      * The value to animate from.
      * By default, this is the initial state of the animating value.
@@ -981,11 +955,11 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    from?: number | string
+    from?: number | string;
     /**
      * @internal
      */
-    to?: number | string | ValueTarget
+    to?: number | string | ValueTarget;
     /**
      * The initial velocity of the spring. By default this is the current velocity of the component.
      *
@@ -1014,11 +988,11 @@ export interface Spring extends Repeat {
      *
      * @public
      */
-    velocity?: number
+    velocity?: number;
     /**
      * @internal
      */
-    delay?: number
+    delay?: number;
 }
 /**
  * An animation that decelerates a value based on its initial velocity,
@@ -1066,7 +1040,7 @@ export interface Inertia {
      *
      * @public
      */
-    type: "inertia"
+    type: "inertia";
     /**
      * A function that receives the automatically-calculated target and returns a new one. Useful for snapping the target to a grid.
      *
@@ -1100,7 +1074,7 @@ export interface Inertia {
      *
      * @public
      */
-    modifyTarget?(v: number): number
+    modifyTarget?(v: number): number;
     /**
      * If `min` or `max` is set, this affects the stiffness of the bounce
      * spring. Higher values will create more sudden movement. Set to `500` by
@@ -1136,7 +1110,7 @@ export interface Inertia {
      *
      * @public
      */
-    bounceStiffness?: number
+    bounceStiffness?: number;
     /**
      * If `min` or `max` is set, this affects the damping of the bounce spring.
      * If set to `0`, spring will oscillate indefinitely. Set to `10` by
@@ -1172,7 +1146,7 @@ export interface Inertia {
      *
      * @public
      */
-    bounceDamping?: number
+    bounceDamping?: number;
     /**
      * A higher power value equals a further target. Set to `0.8` by default.
      *
@@ -1202,7 +1176,7 @@ export interface Inertia {
      *
      * @public
      */
-    power?: number
+    power?: number;
     /**
      * Adjusting the time constant will change the duration of the
      * deceleration, thereby affecting its feel. Set to `700` by default.
@@ -1233,7 +1207,7 @@ export interface Inertia {
      *
      * @public
      */
-    timeConstant?: number
+    timeConstant?: number;
     /**
      * End the animation if the distance to the animation target is below this value, and the absolute speed is below `restSpeed`.
      * When the animation ends, the value gets snapped to the animation target. Set to `0.01` by default.
@@ -1265,7 +1239,7 @@ export interface Inertia {
      *
      * @public
      */
-    restDelta?: number
+    restDelta?: number;
     /**
      * Minimum constraint. If set, the value will "bump" against this value (or immediately spring to it if the animation starts as less than this value).
      *
@@ -1289,7 +1263,7 @@ export interface Inertia {
      *
      * @public
      */
-    min?: number
+    min?: number;
     /**
      * Maximum constraint. If set, the value will "bump" against this value (or immediately snap to it, if the initial animation value exceeds this value).
      *
@@ -1313,7 +1287,7 @@ export interface Inertia {
      *
      * @public
      */
-    max?: number
+    max?: number;
     /**
      * The value to animate from. By default, this is the current state of the animating value.
      *
@@ -1343,7 +1317,7 @@ export interface Inertia {
      *
      * @public
      */
-    from?: number | string
+    from?: number | string;
     /**
      * The initial velocity of the animation.
      * By default this is the current velocity of the component.
@@ -1373,11 +1347,11 @@ export interface Inertia {
      *
      * @public
      */
-    velocity?: number
+    velocity?: number;
     /**
      * @internal
      */
-    delay?: number
+    delay?: number;
 }
 /**
  * Keyframes tweens between multiple `values`.
@@ -1397,13 +1371,13 @@ export interface Keyframes {
      *
      * @public
      */
-    type: "keyframes"
+    type: "keyframes";
     /**
      * An array of values to animate between.
      *
      * @internal
      */
-    values: KeyframesTarget
+    values: KeyframesTarget;
     /**
      * An array of numbers between 0 and 1, where `1` represents the `total` duration.
      *
@@ -1413,7 +1387,7 @@ export interface Keyframes {
      *
      * @public
      */
-    times?: number[]
+    times?: number[];
     /**
      * An array of easing functions for each generated tween, or a single easing function applied to all tweens.
      *
@@ -1430,17 +1404,17 @@ export interface Keyframes {
      *
      * @public
      */
-    ease?: Easing | Easing[]
+    ease?: Easing | Easing[];
     /**
      * Popmotion's easing prop to define individual easings. `ease` will be mapped to this prop in keyframes animations.
      *
      * @internal
      */
-    easings?: Easing | Easing[]
+    easings?: Easing | Easing[];
     /**
      * @internal
      */
-    elapsed?: number
+    elapsed?: number;
     /**
      * The total duration of the animation. Set to `0.3` by default.
      *
@@ -1458,37 +1432,37 @@ export interface Keyframes {
      *
      * @public
      */
-    duration?: number
+    duration?: number;
     /**
      * @public
      */
-    repeatDelay?: number
+    repeatDelay?: number;
     /**
      * @internal
      */
-    from?: number | string
+    from?: number | string;
     /**
      * @internal
      */
-    to?: number | string | ValueTarget
+    to?: number | string | ValueTarget;
     /**
      * @internal
      */
-    velocity?: number
+    velocity?: number;
     /**
      * @internal
      */
-    delay?: number
+    delay?: number;
 }
 /**
  * @internal
  */
 export interface Just {
-    type: "just"
-    to?: number | string | ValueTarget
-    from?: number | string
-    delay?: number
-    velocity?: number
+    type: "just";
+    to?: number | string | ValueTarget;
+    from?: number | string;
+    delay?: number;
+    velocity?: number;
 }
 /**
  * @public
@@ -1499,69 +1473,48 @@ export interface None {
      *
      * @public
      */
-    type: false
+    type: false;
     /**
      * @internal
      */
-    from?: number | string
+    from?: number | string;
     /**
      * @internal
      */
-    delay?: number
+    delay?: number;
     /**
      * @internal
      */
-    velocity?: number
+    velocity?: number;
 }
-export declare type PopmotionTransitionProps =
-    | Tween
-    | Spring
-    | Keyframes
-    | Inertia
-    | Just
+export declare type PopmotionTransitionProps = Tween | Spring | Keyframes | Inertia | Just;
 export declare type PermissiveTransitionDefinition = {
-    [key: string]: any
-}
+    [key: string]: any;
+};
 /**
  * @public
  */
-export declare type TransitionDefinition =
-    | Tween
-    | Spring
-    | Keyframes
-    | Inertia
-    | Just
-    | None
-    | PermissiveTransitionDefinition
+export declare type TransitionDefinition = Tween | Spring | Keyframes | Inertia | Just | None | PermissiveTransitionDefinition;
 export declare type TransitionMap = Orchestration & {
-    [key: string]: TransitionDefinition
-}
+    [key: string]: TransitionDefinition;
+};
 /**
  * Transition props
  *
  * @public
  */
-export declare type Transition =
-    | (Orchestration & Repeat & TransitionDefinition)
-    | (Orchestration & Repeat & TransitionMap)
-export declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-declare type CSSPropertiesWithoutTransitionOrSingleTransforms = Omit<
-    CSSProperties,
-    "transition" | "rotate" | "scale" | "perspective"
->
-declare type TargetProperties = CSSPropertiesWithoutTransitionOrSingleTransforms &
-    SVGAttributes<SVGElement> &
-    TransformProperties &
-    CustomStyles &
-    SVGPathProperties
+export declare type Transition = (Orchestration & Repeat & TransitionDefinition) | (Orchestration & Repeat & TransitionMap);
+export declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+declare type CSSPropertiesWithoutTransitionOrSingleTransforms = Omit<CSSProperties, "transition" | "rotate" | "scale" | "perspective">;
+declare type TargetProperties = CSSPropertiesWithoutTransitionOrSingleTransforms & SVGAttributes<SVGElement> & TransformProperties & CustomStyles & SVGPathProperties;
 export declare type MakeCustomValueType<T> = {
-    [K in keyof T]: T[K] | CustomValueType
-}
-export declare type Target = MakeCustomValueType<TargetProperties>
+    [K in keyof T]: T[K] | CustomValueType;
+};
+export declare type Target = MakeCustomValueType<TargetProperties>;
 export declare type MakeKeyframes<T> = {
-    [K in keyof T]: T[K] | T[K][] | [null, ...T[K][]]
-}
-export declare type TargetWithKeyframes = MakeKeyframes<Target>
+    [K in keyof T]: T[K] | T[K][] | [null, ...T[K][]];
+};
+export declare type TargetWithKeyframes = MakeKeyframes<Target>;
 /**
  * An object that specifies values to animate to. Each value may be set either as
  * a single value, or an array of values.
@@ -1583,29 +1536,25 @@ export declare type TargetWithKeyframes = MakeKeyframes<Target>
  * @public
  */
 export declare type TargetAndTransition = TargetWithKeyframes & {
-    transition?: Transition
-    transitionEnd?: Target
-}
-export declare type TargetResolver = (
-    custom: any,
-    current: Target,
-    velocity: Target
-) => TargetAndTransition
+    transition?: Transition;
+    transitionEnd?: Target;
+};
+export declare type TargetResolver = (custom: any, current: Target, velocity: Target) => TargetAndTransition;
 /**
  * @public
  */
-export declare type Variant = TargetAndTransition | TargetResolver
+export declare type Variant = TargetAndTransition | TargetResolver;
 /**
  * @public
  */
 export declare type Variants = {
-    [key: string]: Variant
-}
+    [key: string]: Variant;
+};
 /**
  * @public
  */
 export interface CustomValueType {
-    mix: (from: any, to: any) => (p: number) => number | string
-    toValue: () => number | string
+    mix: (from: any, to: any) => (p: number) => number | string;
+    toValue: () => number | string;
 }
-export {}
+export {};
