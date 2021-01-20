@@ -38,6 +38,13 @@ const domBaseConfig = {
     useRender,
 }
 
+type CustomMotionComponent = {
+    custom: <Props>(
+        Component: string | React.ComponentType<Props>
+    ) => CustomDomComponent<Props>
+}
+export type Motion = MotionComponents & CustomMotionComponent
+
 /**
  * Convert any React component into a `motion` component. The provided component
  * **must** use `React.forwardRef` to the underlying DOM component you want to animate.
@@ -53,11 +60,6 @@ const domBaseConfig = {
  * @public
  */
 export function createMotionProxy(defaultFeatures: MotionFeature[]) {
-    type CustomMotionComponent = {
-        custom: typeof custom
-    }
-    type Motion = MotionComponents & CustomMotionComponent
-
     const config: MotionComponentConfig<HTMLElement | SVGElement> = {
         ...domBaseConfig,
         defaultFeatures,

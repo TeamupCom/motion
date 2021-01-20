@@ -5,43 +5,9 @@ export { m } from "./render/dom/minimal-component"
 export { AnimatePresence } from "./components/AnimatePresence"
 export { AnimateSharedLayout } from "./components/AnimateSharedLayout"
 export { HTMLVisualElement } from "./render/dom/HTMLVisualElement"
-
-// TWEAKED PART BELOW - adapted from https://github.com/framer/motion/issues/364#issuecomment-723137822
-import {
-    Motion,
-    motion as origMotion,
-    createDomMotionComponent,
-} from "./render/dom"
-
-// Using the same Proxy polyfill checks as proxy-polyfill
-import { proxyDefined } from "./has-proxy"
-
-import {
-    htmlElements,
-    svgElements,
-} from "./render/dom/utils/supported-elements"
-const createNonProxyMotion = () => {
-    let motionProxy = {
-        custom: (component: any) => {
-            createDomMotionComponent(component)
-        },
-    }
-    motionProxy = htmlElements.reduce((acc, key) => {
-        acc[key] = createDomMotionComponent(key)
-        return acc
-    }, motionProxy)
-    motionProxy = svgElements.reduce((acc, key) => {
-        acc[key] = createDomMotionComponent(key)
-        return acc
-    }, motionProxy)
-    return motionProxy
-}
-
-const motion: Motion = proxyDefined
-    ? origMotion
-    : (createNonProxyMotion() as Motion)
+import { Motion, createDomMotionComponent } from "./render/dom"
+declare const motion: Motion
 export { motion, createDomMotionComponent }
-
 /**
  * Features
  */
@@ -50,7 +16,6 @@ export { Drag as DragFeature } from "./motion/features/drag"
 export { Exit as ExitFeature } from "./motion/features/exit"
 export { Gestures as GesturesFeature } from "./motion/features/gestures"
 export { AnimateLayout as AnimateLayoutFeature } from "./motion/features/layout/Animate"
-
 /**
  * Motion values
  */
@@ -62,12 +27,10 @@ export { useTransform } from "./value/use-transform"
 export { useSpring } from "./value/use-spring"
 export { useElementScroll } from "./value/scroll/use-element-scroll"
 export { useViewportScroll } from "./value/scroll/use-viewport-scroll"
-
 /**
  * Accessibility
  */
 export { useReducedMotion } from "./utils/use-reduced-motion"
-
 /**
  * Utils
  */
@@ -105,7 +68,6 @@ export { useDomEvent } from "./events/use-dom-event"
 export { useExternalRef } from "./motion/utils/use-external-ref"
 export { createMotionComponent } from "./motion"
 export { addScaleCorrection } from "./render/dom/layout/scale-correction"
-
 /**
  * Contexts
  */
@@ -116,7 +78,6 @@ export {
 export { PresenceContext } from "./components/AnimatePresence/PresenceContext"
 export { LayoutGroupContext } from "./components/AnimateSharedLayout/LayoutGroupContext"
 export { useVariantContext } from "./motion/context/MotionContext"
-
 /**
  * Types
  */
@@ -179,7 +140,6 @@ export {
     createBatcher,
 } from "./components/AnimateSharedLayout/SharedLayoutContext"
 export * from "./types/geometry"
-
 /**
  * Deprecated
  */
